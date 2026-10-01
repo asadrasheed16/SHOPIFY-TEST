@@ -1,0 +1,652 @@
+﻿{%- comment -%}
+  sections/bundle-spotlight.liquid
+  Nineties90 — Direction C "Clean Sport · Motion"
+  Source: <section class="sec" data-section="BundleSpotlight">
+{%- endcomment -%}
+
+{%- liquid
+  assign bg       = section.settings.color_background
+  assign ink      = section.settings.color_text
+  assign muted    = section.settings.color_muted
+  assign accent   = section.settings.color_accent
+  assign line_col = section.settings.color_line
+  assign surface  = section.settings.color_surface
+  assign pt       = section.settings.padding_top
+  assign pb       = section.settings.padding_bottom
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --bs-bg:      {{ bg }};
+    --bs-ink:     {{ ink }};
+    --bs-muted:   {{ muted }};
+    --bs-accent:  {{ accent }};
+    --bs-line:    {{ line_col }};
+    --bs-surface: {{ surface }};
+    --bs-ease:    cubic-bezier(.2,.7,.2,1);
+  }
+
+  .n90-bs {
+    padding-top: {{ pt }}px;
+    padding-bottom: {{ pb }}px;
+    background: var(--bs-bg);
+    color: var(--bs-ink);
+  }
+
+  .n90-bs__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    align-items: stretch;
+  }
+
+  /* ── Left Column: Media ── */
+  .n90-bs__media {
+    grid-column: 1 / span 6;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .n90-bs__main-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--bs-surface);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .n90-bs__main-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity .4s var(--bs-ease);
+  }
+  .n90-bs__main-img.is-active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .n90-bs__pitch {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--bs-ink);
+    opacity: .07;
+    pointer-events: none;
+  }
+
+  .n90-bs__thumbs {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+  .n90-bs__thumbs::-webkit-scrollbar { display: none; }
+  
+  .n90-bs__thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    background: var(--bs-surface);
+    border: 2px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color .2s;
+  }
+  .n90-bs__thumb.is-active {
+    border-color: var(--bs-ink);
+  }
+  .n90-bs__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── Right Column: Info & Form ── */
+  .n90-bs__info {
+    grid-column: 8 / span 5;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+  }
+
+  .n90-bs__eyebrow {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--bs-ink);
+    margin-bottom: 8px;
+  }
+
+  .n90-bs__heading {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .01em;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--bs-ink);
+  }
+
+  /* Items checklist */
+  .n90-bs__items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+    border-top: 1px solid var(--bs-line);
+    padding-top: 24px;
+  }
+
+  .n90-bs__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bs-bg);
+    border: 1px solid var(--bs-line);
+    border-radius: 6px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .n90-bs__item:hover {
+    border-color: var(--bs-ink);
+  }
+  .n90-bs__item.is-selected {
+    border-color: var(--bs-ink);
+    background: var(--bs-surface);
+  }
+
+  /* Custom Checkbox */
+  .n90-bs__checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--bs-line);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: all .2s;
+    flex-shrink: 0;
+  }
+  .n90-bs__item.is-selected .n90-bs__checkbox {
+    border-color: var(--bs-ink);
+    background: var(--bs-ink);
+    color: var(--bs-bg);
+  }
+  .n90-bs__checkbox svg { width: 14px; height: 14px; }
+
+  .n90-bs__item-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    background: var(--bs-surface);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .n90-bs__item-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .n90-bs__item-details { flex-grow: 1; }
+  .n90-bs__item-title {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    margin: 0 0 2px;
+    color: var(--bs-ink);
+  }
+  .n90-bs__item-price {
+    font-size: 14px;
+    color: var(--bs-muted);
+    margin: 0;
+  }
+
+  /* Summary & Totals */
+  .n90-bs__summary {
+    background: var(--bs-surface);
+    padding: 24px;
+    border-radius: 8px;
+    margin-top: 16px;
+  }
+  
+  .n90-bs__total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+  }
+  .n90-bs__total-label {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--bs-ink);
+  }
+  .n90-bs__total-price {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--bs-ink);
+  }
+  .n90-bs__savings {
+    font-size: 14px;
+    font-weight: 600;
+    color: #008000; /* standard success green */
+    background: #E6F4E6;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-left: 12px;
+  }
+
+  /* Buttons */
+  .n90-bs__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 56px;
+    background: var(--bs-accent);
+    color: #000;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .n90-bs__btn:hover { opacity: .9; }
+  .n90-bs__btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  .n90-bs__link-wrap { margin-top: 16px; text-align: center; }
+  .n90-bs__link {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--bs-ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media screen and (max-width: 1023px) {
+    .n90-bs__media { grid-column: 1 / span 6; }
+    .n90-bs__info { grid-column: 7 / span 6; padding-left: 16px; }
+  }
+  @media screen and (max-width: 749px) {
+    .n90-bs { padding-top: {{ pt | at_most: 64 }}px; padding-bottom: {{ pb | at_most: 64 }}px; }
+    .n90-bs__grid { display: flex; flex-direction: column; gap: 32px; }
+    .n90-bs__info { padding-left: 0; }
+  }
+{%- endstyle -%}
+
+<section class="n90-bs" id="n90-bs-{{ section.id }}" data-section="BundleSpotlight">
+  <div class="page-width">
+    <div class="n90-bs__grid">
+      
+      {%- comment -%} ── Left Column: Media ── {%- endcomment -%}
+      <div class="n90-bs__media">
+        <div class="n90-bs__main-img-wrap" id="bs-main-wrap-{{ section.id }}">
+          {%- if section.blocks.size == 0 -%}
+            <svg class="n90-bs__pitch" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="40" width="720" height="520"></rect><line x1="400" y1="40" x2="400" y2="560"></line><circle cx="400" cy="300" r="80"></circle><circle cx="400" cy="300" r="4" fill="currentColor"></circle><rect x="40" y="160" width="120" height="280"></rect><rect x="640" y="160" width="120" height="280"></rect><rect x="40" y="240" width="44" height="120"></rect><rect x="716" y="240" width="44" height="120"></rect><path d="M160 250a60 60 0 0 1 0 100M640 250a60 60 0 0 0 0 100"></path></svg>
+          {%- endif -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign prod = block.settings.product
+              assign img = block.settings.custom_image | default: prod.featured_image
+            -%}
+            {%- if img != blank -%}
+              {{ img | image_url: width: 800 | image_tag: 
+                class: 'n90-bs__main-img', 
+                data_block_id: block.id,
+                loading: 'lazy'
+              }}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        
+        {%- if section.blocks.size > 1 -%}
+          <div class="n90-bs__thumbs" id="bs-thumbs-{{ section.id }}">
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign prod = block.settings.product
+                assign img = block.settings.custom_image | default: prod.featured_image
+              -%}
+              {%- if img != blank -%}
+                <button type="button" class="n90-bs__thumb" data-block-id="{{ block.id }}">
+                  {{ img | image_url: width: 160 | image_tag: loading: 'lazy' }}
+                </button>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} ── Right Column: Info & Form ── {%- endcomment -%}
+      <div class="n90-bs__info">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="n90-bs__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="n90-bs__heading">{{ section.settings.heading | escape }}</h2>
+          {%- endif -%}
+        </div>
+
+        <form id="bs-form-{{ section.id }}" class="n90-bs__form">
+          <div class="n90-bs__items">
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign prod = block.settings.product
+                assign title = block.settings.custom_title | default: prod.title | default: "Bundle Item"
+                assign img = block.settings.custom_image | default: prod.featured_image
+                assign variant = prod.selected_or_first_available_variant
+                assign price = variant.price | default: 0
+                assign compare_price = variant.compare_at_price | default: price
+              -%}
+              <label class="n90-bs__item {% if block.settings.selected_by_default %}is-selected{% endif %}" data-block-id="{{ block.id }}">
+                <input type="checkbox" 
+                  name="bundle_items[]" 
+                  value="{{ variant.id }}" 
+                  data-price="{{ price }}" 
+                  data-compare-price="{{ compare_price }}"
+                  data-qty="{{ block.settings.default_qty }}"
+                  {% if block.settings.selected_by_default %}checked{% endif %}
+                  style="display:none;"
+                >
+                <div class="n90-bs__checkbox">
+                  <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="n90-bs__item-img">
+                  {%- if img != blank -%}
+                    {{ img | image_url: width: 100 | image_tag: loading: 'lazy' }}
+                  {%- else -%}
+                    <div style="width:100%; height:100%; background:#ccc;"></div>
+                  {%- endif -%}
+                </div>
+                <div class="n90-bs__item-details">
+                  <p class="n90-bs__item-title">{{ title | escape }}</p>
+                  <p class="n90-bs__item-price">
+                    {% if price > 0 %}{{ price | money }}{% else %}£0.00{% endif %}
+                    {% if block.settings.default_qty > 1 %}(x{{ block.settings.default_qty }}){% endif %}
+                  </p>
+                </div>
+              </label>
+            {%- endfor -%}
+          </div>
+
+          <div class="n90-bs__summary">
+            <div class="n90-bs__total-row">
+              <span class="n90-bs__total-label">Bundle Total</span>
+              <div>
+                <span class="n90-bs__total-price" id="bs-total-{{ section.id }}">£0.00</span>
+                <span class="n90-bs__savings" id="bs-savings-{{ section.id }}" style="display:none;">Save 0%</span>
+              </div>
+            </div>
+            <button type="button" class="n90-bs__btn" id="bs-submit-{{ section.id }}">
+              Add Bundle to Order
+            </button>
+            {%- if section.settings.page_link != blank -%}
+              <div class="n90-bs__link-wrap">
+                <a href="{{ section.settings.page_link }}" class="n90-bs__link">
+                  {{ section.settings.link_label | default: 'View Full Package Details' }}
+                </a>
+              </div>
+            {%- endif -%}
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  const form = document.getElementById('bs-form-' + sectionId);
+  if (!form) return;
+
+  const totalEl = document.getElementById('bs-total-' + sectionId);
+  const savingsEl = document.getElementById('bs-savings-' + sectionId);
+  const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+  const items = form.querySelectorAll('.n90-bs__item');
+  const mainImages = document.querySelectorAll('#bs-main-wrap-' + sectionId + ' .n90-bs__main-img');
+  const thumbs = document.querySelectorAll('#bs-thumbs-' + sectionId + ' .n90-bs__thumb');
+  const submitBtn = document.getElementById('bs-submit-' + sectionId);
+
+  const formatMoney = (cents) => {
+    return '£' + (cents / 100).toFixed(2);
+  };
+
+  const updateTotals = () => {
+    let total = 0;
+    let compareTotal = 0;
+    
+    checkboxes.forEach(cb => {
+      if (cb.checked) {
+        const qty = parseInt(cb.getAttribute('data-qty') || '1', 10);
+        const price = parseInt(cb.getAttribute('data-price') || '0', 10);
+        const compare = parseInt(cb.getAttribute('data-compare-price') || '0', 10);
+        total += price * qty;
+        compareTotal += compare * qty;
+      }
+    });
+
+    totalEl.textContent = formatMoney(total);
+    
+    if (compareTotal > total && total > 0) {
+      const diff = compareTotal - total;
+      const pct = Math.round((diff / compareTotal) * 100);
+      savingsEl.textContent = 'Save ' + pct + '%';
+      savingsEl.style.display = 'inline-block';
+    } else {
+      savingsEl.style.display = 'none';
+    }
+  };
+
+  const updateActiveImage = (blockId) => {
+    mainImages.forEach(img => {
+      if (img.getAttribute('data-block-id') === blockId) {
+        img.classList.add('is-active');
+      } else {
+        img.classList.remove('is-active');
+      }
+    });
+    thumbs.forEach(th => {
+      if (th.getAttribute('data-block-id') === blockId) {
+        th.classList.add('is-active');
+      } else {
+        th.classList.remove('is-active');
+      }
+    });
+  };
+
+  items.forEach(item => {
+    item.addEventListener('click', function(e) {
+      if (e.target.tagName.toLowerCase() === 'input') return;
+      const cb = item.querySelector('input');
+      cb.checked = !cb.checked;
+      if (cb.checked) {
+        item.classList.add('is-selected');
+        const blockId = item.getAttribute('data-block-id');
+        updateActiveImage(blockId);
+      } else {
+        item.classList.remove('is-selected');
+      }
+      updateTotals();
+    });
+  });
+
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', function() {
+      const blockId = thumb.getAttribute('data-block-id');
+      updateActiveImage(blockId);
+    });
+  });
+
+  // Init
+  updateTotals();
+  if (mainImages.length > 0) {
+    updateActiveImage(mainImages[0].getAttribute('data-block-id'));
+  }
+
+  // Submission
+  submitBtn.addEventListener('click', function() {
+    const itemsToAdd = [];
+    checkboxes.forEach(cb => {
+      if (cb.checked && cb.value) {
+        itemsToAdd.push({
+          id: parseInt(cb.value, 10),
+          quantity: parseInt(cb.getAttribute('data-qty') || '1', 10)
+        });
+      }
+    });
+
+    if (itemsToAdd.length === 0) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Adding...';
+
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: itemsToAdd })
+    })
+    .then(response => response.json())
+    .then(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Add Bundle to Order';
+      const cartDrawer = document.querySelector('cart-drawer');
+      if (cartDrawer) {
+        cartDrawer.open();
+      } else {
+        window.location.href = '/cart';
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Add Bundle to Order';
+    });
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Bundle Spotlight",
+  "tag": "section",
+  "class": "section-bundle-spotlight",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "header", "content": "Colour scheme" },
+    { "type": "color", "id": "color_background", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_text",    "label": "Text / ink",       "default": "#0E1B33" },
+    { "type": "color", "id": "color_muted",   "label": "Muted text",       "default": "#4A5568" },
+    { "type": "color", "id": "color_accent",  "label": "Accent / Button",  "default": "#D4FF3A" },
+    { "type": "color", "id": "color_line",    "label": "Border / divider", "default": "#E2E6ED" },
+    { "type": "color", "id": "color_surface", "label": "Surface fill",     "default": "#F3F5F8" },
+    { "type": "header", "content": "Spacing" },
+    {
+      "type": "range", "id": "padding_top", "label": "Padding top",
+      "min": 0, "max": 200, "step": 8, "unit": "px", "default": 112
+    },
+    {
+      "type": "range", "id": "padding_bottom", "label": "Padding bottom",
+      "min": 0, "max": 200, "step": 8, "unit": "px", "default": 112
+    },
+    { "type": "header", "content": "Info" },
+    {
+      "type": "text", "id": "eyebrow", "label": "Eyebrow",
+      "default": "Match bundles"
+    },
+    {
+      "type": "text", "id": "heading", "label": "Heading",
+      "default": "One bundle. Whole kit."
+    },
+    { "type": "header", "content": "Dedicated Page Link" },
+    {
+      "type": "url", "id": "page_link", "label": "Page URL",
+      "info": "Link to the dedicated bundle landing page."
+    },
+    {
+      "type": "text", "id": "link_label", "label": "Link label",
+      "default": "View Full Package Details"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle_item",
+      "name": "Bundle item",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "product", "id": "product", "label": "Product"
+        },
+        {
+          "type": "text", "id": "custom_title", "label": "Custom title",
+          "info": "Overrides product title if set."
+        },
+        {
+          "type": "image_picker", "id": "custom_image", "label": "Custom image",
+          "info": "Overrides product featured image if set."
+        },
+        {
+          "type": "checkbox", "id": "selected_by_default", "label": "Selected by default",
+          "default": true
+        },
+        {
+          "type": "number", "id": "default_qty", "label": "Default Quantity",
+          "default": 1,
+          "info": "Number of items to add per bundle selection."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Spotlight",
+      "blocks": [
+        {
+          "type": "bundle_item",
+          "settings": { "custom_title": "Match Shirt", "default_qty": 1, "selected_by_default": true }
+        },
+        {
+          "type": "bundle_item",
+          "settings": { "custom_title": "Match Shorts", "default_qty": 1, "selected_by_default": true }
+        },
+        {
+          "type": "bundle_item",
+          "settings": { "custom_title": "Match Socks", "default_qty": 1, "selected_by_default": true }
+        },
+        {
+          "type": "bundle_item",
+          "settings": { "custom_title": "Quarter Zip Midlayer", "default_qty": 1, "selected_by_default": false }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

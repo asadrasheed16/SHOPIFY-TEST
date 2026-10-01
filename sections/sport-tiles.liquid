@@ -1,0 +1,649 @@
+﻿{%- comment -%}
+  sections/sport-tiles.liquid
+  Nineties90 — Direction C "Clean Sport · Motion"
+  Source: <section class="sec" data-section="SportTiles"> (ref lines 1108-1123)
+  CSS source:
+    .sec           ref line 108   — padding:112px 0
+    .sec-head      ref line 111   — flex; space-between; margin-bottom:48px
+    .g3            ref line 103   — 3-col grid, 24px gap
+    .tile          ref line 239   — display:block; text-align:left
+    .dir-c.tile-img ref line 241  — aspect-ratio:1/1
+    .tile-meta     ref line 243   — flex; space-between; baseline; padding-top:16px
+    .is-m .g3      ref line 106   — 2-col grid, gap 24px 12px
+    .is-m .tile-meta ref line 246 — column; flex-start; gap:2px; padding-top:10px
+  Enhancements (beyond reference):
+    - Bento: first tile spans 2 cols × 2 rows on ≥1024px
+    - Numbered counter badges (01, 02 …)
+    - Hover arrow circle
+    - SVG pitch watermark on placeholder tiles
+    - Scroll-reveal entrance animation (pure CSS + IntersectionObserver)
+{%- endcomment -%}
+
+{%- liquid
+  assign bg       = section.settings.color_background
+  assign ink      = section.settings.color_text
+  assign muted    = section.settings.color_muted
+  assign accent   = section.settings.color_accent
+  assign line_col = section.settings.color_line
+  assign surface  = section.settings.color_surface
+  assign slot_bg  = section.settings.color_slot
+  assign pt       = section.settings.padding_top
+  assign pb       = section.settings.padding_bottom
+-%}
+
+{%- style -%}
+  /* ── N90 SportTiles · colour tokens ─────────────────────────────── */
+  #shopify-section-{{ section.id }} {
+    --st-bg:      {{ bg }};
+    --st-ink:     {{ ink }};
+    --st-muted:   {{ muted }};
+    --st-accent:  {{ accent }};
+    --st-line:    {{ line_col }};
+    --st-surface: {{ surface }};
+    --st-slot:    {{ slot_bg }};
+    --st-ease:    cubic-bezier(.2,.7,.2,1);
+    --st-spring:  cubic-bezier(.2,1.25,.35,1);
+    --st-radius:  4px;
+  }
+
+  /* ── Section wrapper (ref: .sec padding:112px 0) ─────────────────── */
+  .n90-st {
+    padding-top:    {{ pt }}px;
+    padding-bottom: {{ pb }}px;
+    background: var(--st-bg);
+    color: var(--st-ink);
+  }
+
+  /* ── Section header (ref: .sec-head) ────────────────────────────── */
+  /* .sec-head{display:flex;justify-content:space-between;align-items:flex-end;
+               gap:24px;margin-bottom:48px} */
+  .n90-st__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  /* Eyebrow (ref: .dir-c .eyebrow — Barlow 14px 600 uppercase) */
+  .n90-st__eyebrow {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--st-ink);
+    margin-bottom: 16px;
+  }
+  /* Heading (ref: .d.h2 — Barlow Condensed ~48px) */
+  .n90-st__heading {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: clamp(32px, 3.6vw, 54px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .01em;
+    line-height: 1;
+    margin: 0;
+    color: var(--st-ink);
+  }
+  /* Secondary text-link (ref: .dir-c .tlink — uppercase Barlow) */
+  .n90-st__tlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--st-ink);
+    text-decoration: underline;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--st-ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: text-decoration-thickness .15s, text-underline-offset .25s var(--st-ease);
+  }
+  .n90-st__tlink:hover {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  /* ── Bento grid ──────────────────────────────────────────────────── */
+  /* Base: .g3 = 3-col, 24px gap (ref line 103)
+     Enhancement: first tile spans 2×2 in bento mode on ≥1024px       */
+  .n90-st__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  /* First tile: 2-column 2-row bento span */
+  .n90-st__tile:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  /* First tile img fills the taller bento cell */
+  .n90-st__tile:first-child .n90-st__img-wrap {
+    aspect-ratio: 1 / 1; /* stays square: bento height comes from row span */
+    height: 100%;
+  }
+
+  /* ── Individual tile (ref: .tile) ───────────────────────────────── */
+  .n90-st__tile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    color: var(--st-ink);
+    position: relative;
+  }
+
+  /* ── Image wrapper (ref: .dir-c .tile-img aspect-ratio:1/1) ─────── */
+  .n90-st__img-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: var(--st-slot);
+    border-radius: var(--st-radius);
+    overflow: hidden;
+    display: block;
+    /* Ref: .tile:hover .tile-img{opacity:.9} */
+    transition: opacity .3s var(--st-ease);
+  }
+  .n90-st__tile:hover .n90-st__img-wrap { opacity: .9; }
+
+  /* Collection or custom image */
+  .n90-st__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* SVG pitch watermark (ref line 907: .pitch opacity .07) */
+  .n90-st__pitch {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--st-ink);
+    opacity: .07;
+    pointer-events: none;
+  }
+
+  /* Numbered counter badge (01, 02 …) — enhancement */
+  .n90-st__num {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--st-ink);
+    background: var(--st-bg);
+    border: 1px solid var(--st-line);
+    border-radius: 999px;
+    padding: 2px 10px;
+    line-height: 1.6;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Hover arrow circle — enhancement */
+  .n90-st__arrow {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--st-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--st-bg);
+    color: var(--st-ink);
+    z-index: 2;
+    opacity: 0;
+    transform: scale(.7) translateY(4px);
+    transition: opacity .3s var(--st-ease), transform .4s var(--st-spring),
+                background .25s, color .25s;
+    pointer-events: none;
+  }
+  .n90-st__tile:hover .n90-st__arrow,
+  .n90-st__tile:focus-visible .n90-st__arrow {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  .n90-st__arrow svg { width: 16px; height: 16px; flex: none; }
+
+  /* ── Tile meta (ref: .tile-meta) ────────────────────────────────── */
+  /* .tile-meta{display:flex;justify-content:space-between;
+               align-items:baseline;padding-top:16px;gap:12px} */
+  .n90-st__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 16px;
+    gap: 12px;
+  }
+  /* Sport name (ref: .d.h3 — Barlow Condensed ~28px) */
+  .n90-st__name {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    line-height: 1.1;
+    color: var(--st-ink);
+  }
+  /* Price tag (ref: .small.muted — 14px muted) */
+  .n90-st__price {
+    font-size: 14px;
+    color: var(--st-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── Scroll-reveal entrance (pure CSS + IntersectionObserver JS) ── */
+  .n90-st__tile {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .85s var(--st-ease), transform .85s var(--st-ease);
+  }
+  .n90-st__tile.n90-is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Reduced-motion ─────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} *,
+    #shopify-section-{{ section.id }} *::before,
+    #shopify-section-{{ section.id }} *::after {
+      animation-duration: .001ms !important;
+      transition-duration: .001ms !important;
+    }
+    .n90-st__tile { opacity: 1; transform: none; }
+  }
+
+  /* ── Tablet (750-1023px): flatten bento, keep 3-col ──────────────── */
+  @media screen and (min-width: 750px) and (max-width: 1023px) {
+    .n90-st__tile:first-child {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+    .n90-st__tile:first-child .n90-st__img-wrap { height: auto; }
+  }
+
+  /* ── Mobile <750px (ref: .is-m .g3 — 2-col 24px 12px) ──────────── */
+  /* .is-m .g3{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+     .is-m .tile-meta{flex-direction:column;align-items:flex-start;gap:2px;padding-top:10px} */
+  @media screen and (max-width: 749px) {
+    .n90-st { padding-top: {{ pt | at_most: 64 }}px; padding-bottom: {{ pb | at_most: 64 }}px; }
+    .n90-st__head { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 28px; }
+    .n90-st__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 12px;
+    }
+    /* Collapse bento on mobile */
+    .n90-st__tile:first-child {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+    .n90-st__tile:first-child .n90-st__img-wrap { height: auto; }
+    /* Meta stack */
+    .n90-st__meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      padding-top: 10px;
+    }
+    .n90-st__price { white-space: normal; }
+    /* Always show arrow on touch */
+    .n90-st__arrow { opacity: 1; transform: scale(1); }
+  }
+{%- endstyle -%}
+
+<section
+  class="n90-st"
+  id="n90-st-{{ section.id }}"
+  data-section="SportTiles"
+>
+  <div class="page-width">
+
+    {%- comment -%} ── Section header ── {%- endcomment -%}
+    <div class="n90-st__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="n90-st__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="n90-st__heading">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.link_label != blank -%}
+        <a
+          href="{{ section.settings.link_url | default: '#' }}"
+          class="n90-st__tlink"
+        >
+          {{- section.settings.link_label | escape -}}
+          <svg width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true" focusable="false">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ── Tile grid ── {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="n90-st__grid" id="n90-st-grid-{{ section.id }}">
+
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign idx       = forloop.index
+            assign idx0      = forloop.index0
+            assign is_first  = forloop.first
+            assign num_label = idx | prepend: '0' | slice: -2, 2
+
+            comment
+              Resolve image: custom_image > collection featured image
+            endcomment
+            assign tile_img = blank
+            if block.settings.custom_image != blank
+              assign tile_img = block.settings.custom_image
+            elsif block.settings.collection != blank and block.settings.collection.featured_image != blank
+              assign tile_img = block.settings.collection.featured_image
+            endif
+
+            comment
+              Resolve title: custom_title > collection title > block fallback title
+            endcomment
+            assign tile_title = block.settings.custom_title
+            if tile_title == blank and block.settings.collection != blank
+              assign tile_title = block.settings.collection.title
+            endif
+            if tile_title == blank
+              assign tile_title = block.settings.fallback_title
+            endif
+
+            comment
+              Resolve URL: tile_url > collection URL
+            endcomment
+            assign tile_url = block.settings.tile_url
+            if tile_url == blank and block.settings.collection != blank
+              assign tile_url = block.settings.collection.url
+            endif
+            if tile_url == blank
+              assign tile_url = '#'
+            endif
+
+            comment
+              Image loading: first two tiles eager, rest lazy
+            endcomment
+            if idx <= 2
+              assign img_loading  = 'eager'
+              assign img_fetchpri = 'auto'
+            else
+              assign img_loading  = 'lazy'
+              assign img_fetchpri = 'auto'
+            endif
+            if is_first
+              assign img_fetchpri = 'high'
+            endif
+          -%}
+
+          <a
+            class="n90-st__tile"
+            id="n90-st-tile-{{ section.id }}-{{ idx }}"
+            href="{{ tile_url }}"
+            aria-label="{{ tile_title | escape }}{% if block.settings.price_tag != blank %} — {{ block.settings.price_tag | escape }}{% endif %}"
+            data-reveal-delay="{{ idx0 | times: 80 }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- comment -%} ── Image / placeholder ── {%- endcomment -%}
+            <span class="n90-st__img-wrap">
+
+              {%- if tile_img != blank -%}
+                {%- liquid
+                  assign img = tile_img
+                  if is_first
+                    assign img_widths = '400, 600, 800, 1000, 1200'
+                    assign img_sizes  = '(max-width:749px) 50vw, (max-width:1023px) 33vw, 66vw'
+                  else
+                    assign img_widths = '300, 400, 600, 800'
+                    assign img_sizes  = '(max-width:749px) 50vw, (max-width:1023px) 33vw, 33vw'
+                  endif
+                -%}
+                <img
+                  class="n90-st__img"
+                  src="{{ img | image_url: width: 800 }}"
+                  srcset="{{ img | image_url: width: 300 }} 300w,
+                          {{ img | image_url: width: 400 }} 400w,
+                          {{ img | image_url: width: 600 }} 600w,
+                          {{ img | image_url: width: 800 }} 800w,
+                          {{ img | image_url: width: 1000 }} 1000w,
+                          {{ img | image_url: width: 1200 }} 1200w"
+                  sizes="{{ img_sizes }}"
+                  width="{{ img.width }}"
+                  height="{{ img.height }}"
+                  alt="{{ img.alt | default: tile_title | escape }}"
+                  loading="{{ img_loading }}"
+                  fetchpriority="{{ img_fetchpri }}"
+                >
+              {%- else -%}
+                {%- comment -%} SVG pitch placeholder (ref line 1117) {%- endcomment -%}
+                <svg
+                  class="n90-st__pitch"
+                  viewBox="0 0 800 600"
+                  preserveAspectRatio="xMidYMid slice"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <rect x="40" y="40" width="720" height="520"/>
+                  <line x1="400" y1="40" x2="400" y2="560"/>
+                  <circle cx="400" cy="300" r="80"/>
+                  <circle cx="400" cy="300" r="4" fill="currentColor"/>
+                  <rect x="40" y="160" width="120" height="280"/>
+                  <rect x="640" y="160" width="120" height="280"/>
+                  <rect x="40" y="240" width="44" height="120"/>
+                  <rect x="716" y="240" width="44" height="120"/>
+                  <path d="M160 250a60 60 0 0 1 0 100M640 250a60 60 0 0 0 0 100"/>
+                </svg>
+              {%- endif -%}
+
+              {%- comment -%} Counter badge {%- endcomment -%}
+              <span class="n90-st__num" aria-hidden="true">{{ num_label }}</span>
+
+              {%- comment -%} Hover arrow {%- endcomment -%}
+              <span class="n90-st__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" aria-hidden="true" focusable="false">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </span>
+
+            </span>{%- comment -%} /n90-st__img-wrap {%- endcomment -%}
+
+            {%- comment -%} ── Tile meta ── {%- endcomment -%}
+            <span class="n90-st__meta">
+              {%- if tile_title != blank -%}
+                <span class="n90-st__name">{{ tile_title | escape }}</span>
+              {%- endif -%}
+              {%- if block.settings.price_tag != blank -%}
+                <span class="n90-st__price">{{ block.settings.price_tag | escape }}</span>
+              {%- endif -%}
+            </span>
+
+          </a>{%- comment -%} /n90-st__tile {%- endcomment -%}
+
+        {%- endfor -%}
+
+      </div>{%- comment -%} /n90-st__grid {%- endcomment -%}
+    {%- endif -%}
+
+  </div>{%- comment -%} /page-width {%- endcomment -%}
+</section>
+
+<script>
+(function () {
+  'use strict';
+  /* Scroll-reveal: add .n90-is-visible with staggered delay when tile enters viewport */
+  var grid = document.getElementById('n90-st-grid-{{ section.id }}');
+  if (!grid) return;
+  var tiles = Array.from(grid.querySelectorAll('.n90-st__tile'));
+  if (!tiles.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    /* Fallback: show immediately */
+    tiles.forEach(function(t) { t.classList.add('n90-is-visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var tile  = entry.target;
+      var delay = parseInt(tile.dataset.revealDelay, 10) || 0;
+      setTimeout(function() { tile.classList.add('n90-is-visible'); }, delay);
+      observer.unobserve(tile);
+    });
+  }, { threshold: 0.1 });
+
+  tiles.forEach(function(tile) { observer.observe(tile); });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Sport Tiles",
+  "tag": "section",
+  "class": "section-sport-tiles",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "header", "content": "Colour scheme" },
+    { "type": "color", "id": "color_background", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_text",    "label": "Text / ink",       "default": "#0E1B33" },
+    { "type": "color", "id": "color_muted",   "label": "Muted text",       "default": "#4A5568" },
+    { "type": "color", "id": "color_accent",  "label": "Accent",           "default": "#D4FF3A" },
+    { "type": "color", "id": "color_line",    "label": "Border / divider", "default": "#E2E6ED" },
+    {
+      "type": "color", "id": "color_surface", "label": "Counter badge background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color", "id": "color_slot", "label": "Tile placeholder fill",
+      "default": "#EEF1F5",
+      "info": "Background of tiles with no image."
+    },
+    { "type": "header", "content": "Spacing" },
+    {
+      "type": "range", "id": "padding_top", "label": "Padding top",
+      "min": 0, "max": 200, "step": 8, "unit": "px", "default": 112,
+      "info": "Reference value: 112 px (.sec)."
+    },
+    {
+      "type": "range", "id": "padding_bottom", "label": "Padding bottom",
+      "min": 0, "max": 200, "step": 8, "unit": "px", "default": 112
+    },
+    { "type": "header", "content": "Section header" },
+    {
+      "type": "text", "id": "eyebrow", "label": "Eyebrow",
+      "default": "Shop by sport",
+      "info": "Small uppercase label above the heading."
+    },
+    {
+      "type": "text", "id": "heading", "label": "Heading",
+      "default": "Kit for every club"
+    },
+    { "type": "header", "content": "Secondary link" },
+    {
+      "type": "text", "id": "link_label", "label": "Link label",
+      "default": "Find your club shop"
+    },
+    { "type": "url", "id": "link_url", "label": "Link URL" }
+  ],
+  "blocks": [
+    {
+      "type": "sport_tile",
+      "name": "Sport tile",
+      "limit": 9,
+      "settings": [
+        { "type": "header", "content": "Collection" },
+        {
+          "type": "collection", "id": "collection",
+          "label": "Collection",
+          "info": "Automatically uses the collection title, URL, and featured image when set."
+        },
+        { "type": "header", "content": "Overrides" },
+        {
+          "type": "text", "id": "custom_title", "label": "Custom sport name",
+          "info": "Overrides the collection title when set.",
+          "placeholder": "Football"
+        },
+        {
+          "type": "image_picker", "id": "custom_image", "label": "Custom image",
+          "info": "Overrides the collection featured image. Recommended: 800 x 800 px square."
+        },
+        {
+          "type": "text", "id": "fallback_title", "label": "Fallback title",
+          "info": "Used if no collection and no custom title is set.",
+          "placeholder": "Sport"
+        },
+        { "type": "header", "content": "Link & pricing" },
+        {
+          "type": "url", "id": "tile_url", "label": "Tile URL",
+          "info": "Overrides the collection URL. Use for custom sport landing pages."
+        },
+        {
+          "type": "text", "id": "price_tag", "label": "Price tag",
+          "default": "From £X per player",
+          "info": "Small muted text shown alongside the sport name."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sport Tiles",
+      "blocks": [
+        {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Football", "price_tag": "From £12 per player" }
+        },
+        {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Rugby", "price_tag": "From £14 per player" }
+        },
+        {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Cricket", "price_tag": "From £15 per player" }
+        },
+        {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Golf", "price_tag": "From £18 per player" }
+        },
+        {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Darts", "price_tag": "From £12 per player" }
+        },
+        {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Bowls", "price_tag": "From £13 per player" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

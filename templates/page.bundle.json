@@ -1,0 +1,56 @@
+{
+  "sections": {
+    "main": {
+      "type": "bundle-spotlight",
+      "settings": {
+        "color_background": "#FFFFFF",
+        "color_text": "#0E1B33",
+        "color_muted": "#4A5568",
+        "color_accent": "#D4FF3A",
+        "color_line": "#E2E6ED",
+        "color_surface": "#F3F5F8",
+        "padding_top": 112,
+        "padding_bottom": 112,
+        "eyebrow": "Match bundles",
+        "heading": "One bundle. Whole kit.",
+        "link_label": "View Full Package Details"
+      }
+    },
+    "trust": {
+      "type": "trust-row",
+      "blocks": {
+        "crest_1": { "type": "crest" },
+        "crest_2": { "type": "crest" },
+        "crest_3": { "type": "crest" },
+        "crest_4": { "type": "crest" },
+        "crest_5": { "type": "crest" },
+        "crest_6": { "type": "crest" },
+        "fact_1": { "type": "fact", "settings": { "fact_key": "From 10", "fact_value": "pieces" } },
+        "fact_2": { "type": "fact", "settings": { "fact_key": "Free", "fact_value": "design tool" } },
+        "fact_3": { "type": "fact", "settings": { "fact_key": "48hrs", "fact_value": "turnaround" } },
+        "fact_4": { "type": "fact", "settings": { "fact_key": "100%", "fact_value": "sublimated" } }
+      },
+      "block_order": [
+        "crest_1", "crest_2", "crest_3", "crest_4", "crest_5", "crest_6",
+        "fact_1", "fact_2", "fact_3", "fact_4"
+      ],
+      "settings": {
+        "color_background": "#F3F5F8",
+        "color_text": "#0E1B33",
+        "color_muted": "#4A5568",
+        "color_line": "#E2E6ED",
+        "color_surface": "#FFFFFF",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "rating_score": "4.9",
+        "rating_label": "from 2,400+ reviews",
+        "rating_aria_suffix": "out of 5",
+        "aria_label": "Why clubs choose Nineties90"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "trust"
+  ]
+}

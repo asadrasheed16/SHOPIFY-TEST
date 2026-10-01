@@ -1,0 +1,246 @@
+{
+  "sections": {
+    "hero_slideshow": {
+      "type": "hero-slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "New season",
+            "heading": "<p>Kit built for the pitch.<\/p>",
+            "subheading": "Custom teamwear from 10 pieces. Free design, free quote.",
+            "cta_primary_label": "Shop kits",
+            "cta_secondary_label": "Get a free quote"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Club shops",
+            "heading": "<p>Your badge. Your colours.<\/p>",
+            "subheading": "Set up a free club shop in minutes and let your members order direct.",
+            "cta_primary_label": "Set up your club shop",
+            "cta_secondary_label": "See how it works"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Urban Camo",
+            "heading": "<p>Training kit that stands out.<\/p>",
+            "subheading": "Bold camo prints, squad-ready from just 10 pieces.",
+            "cta_primary_label": "Shop the look",
+            "cta_secondary_label": "Build a kit mockup"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2", "slide_3"],
+      "settings": {
+        "color_background": "#FFFFFF",
+        "color_text": "#0E1B33",
+        "color_accent": "#D4FF3A",
+        "color_muted": "#4A5568",
+        "color_line": "#E2E6ED",
+        "padding_top": 32,
+        "padding_bottom": 88,
+        "media_aspect_ratio": "7 / 5",
+        "image_position": "center center",
+        "overlay_color": "#0E1B33",
+        "overlay_opacity": 0,
+        "title_size_vw": 6.2,
+        "title_size_max": 96,
+        "autoplay": true,
+        "autoplay_speed": 6.5,
+        "aria_label": "Featured"
+      }
+    },
+    "trust_row": {
+      "type": "trust-row",
+      "blocks": {
+        "crest_1": { "type": "crest", "settings": {} },
+        "crest_2": { "type": "crest", "settings": {} },
+        "crest_3": { "type": "crest", "settings": {} },
+        "crest_4": { "type": "crest", "settings": {} },
+        "crest_5": { "type": "crest", "settings": {} },
+        "crest_6": { "type": "crest", "settings": {} },
+        "fact_1": { "type": "fact", "settings": { "fact_key": "From 10", "fact_value": "pieces" } },
+        "fact_2": { "type": "fact", "settings": { "fact_key": "Free", "fact_value": "design tool" } },
+        "fact_3": { "type": "fact", "settings": { "fact_key": "48hrs", "fact_value": "turnaround" } },
+        "fact_4": { "type": "fact", "settings": { "fact_key": "100%", "fact_value": "sublimated" } }
+      },
+      "block_order": [
+        "crest_1", "crest_2", "crest_3", "crest_4", "crest_5", "crest_6",
+        "fact_1", "fact_2", "fact_3", "fact_4"
+      ],
+      "settings": {
+        "color_background": "#FFFFFF",
+        "color_text": "#0E1B33",
+        "color_muted": "#4A5568",
+        "color_line": "#E2E6ED",
+        "color_surface": "#F3F5F8",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "rating_score": "4.9",
+        "rating_label": "from 2,400+ reviews",
+        "rating_aria_suffix": "out of 5",
+        "aria_label": "Why clubs choose Nineties90"
+      }
+    },
+    "sport_tiles": {
+      "type": "sport-tiles",
+      "blocks": {
+        "tile_1": {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Football", "price_tag": "From £12 per player" }
+        },
+        "tile_2": {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Rugby", "price_tag": "From £14 per player" }
+        },
+        "tile_3": {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Cricket", "price_tag": "From £15 per player" }
+        },
+        "tile_4": {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Golf", "price_tag": "From £18 per player" }
+        },
+        "tile_5": {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Darts", "price_tag": "From £12 per player" }
+        },
+        "tile_6": {
+          "type": "sport_tile",
+          "settings": { "fallback_title": "Bowls", "price_tag": "From £13 per player" }
+        }
+      },
+      "block_order": [
+        "tile_1",
+        "tile_2",
+        "tile_3",
+        "tile_4",
+        "tile_5",
+        "tile_6"
+      ],
+      "settings": {
+        "color_background": "#FFFFFF",
+        "color_text": "#0E1B33",
+        "color_muted": "#4A5568",
+        "color_accent": "#D4FF3A",
+        "color_line": "#E2E6ED",
+        "color_surface": "#FFFFFF",
+        "color_slot": "#EEF1F5",
+        "padding_top": 112,
+        "padding_bottom": 112,
+        "eyebrow": "Shop by sport",
+        "heading": "Kit for every club",
+        "link_label": "Find your club shop"
+      }
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_1": { "type": "step", "settings": { "step_num": "01", "title": "Design", "description": "<p>Build your kit in 3D or get free custom concepts from our design team.</p>", "badge": "Free mockups" } },
+        "step_2": { "type": "step", "settings": { "step_num": "02", "title": "Approve", "description": "<p>Review your digital samples, sign off on the artwork and confirm your club order.</p>", "badge": "No obligation" } },
+        "step_3": { "type": "step", "settings": { "step_num": "03", "title": "Produce", "description": "<p>Your kit goes into our state-of-the-art sublimation production line.</p>", "badge": "3–4 weeks" } },
+        "step_4": { "type": "step", "settings": { "step_num": "04", "title": "Deliver", "description": "<p>Fully tracked courier delivery straight to your clubhouse or club secretary.</p>", "badge": "Tracked delivery" } }
+      },
+      "block_order": [ "step_1", "step_2", "step_3", "step_4" ],
+      "settings": {
+        "color_background": "#F3F5F8",
+        "color_text": "#0E1B33",
+        "color_muted": "#4A5568",
+        "color_accent": "#D4FF3A",
+        "color_line": "#E2E6ED",
+        "color_surface": "#FFFFFF",
+        "padding_top": 112,
+        "padding_bottom": 112,
+        "eyebrow": "How it works",
+        "heading": "From pitch to production in 4 steps",
+        "subtext": "<p>A simple, transparent process to get your club match-ready.</p>",
+        "btn_label": "Start your design"
+      }
+    },
+    "bundle_spotlight": {
+      "type": "bundle-spotlight",
+      "blocks": {
+        "item_1": { "type": "bundle_item", "settings": { "custom_title": "Match Shirt", "default_qty": 1, "selected_by_default": true } },
+        "item_2": { "type": "bundle_item", "settings": { "custom_title": "Match Shorts", "default_qty": 1, "selected_by_default": true } },
+        "item_3": { "type": "bundle_item", "settings": { "custom_title": "Match Socks", "default_qty": 1, "selected_by_default": true } },
+        "item_4": { "type": "bundle_item", "settings": { "custom_title": "Quarter Zip Midlayer", "default_qty": 1, "selected_by_default": false } }
+      },
+      "block_order": [ "item_1", "item_2", "item_3", "item_4" ],
+      "settings": {
+        "color_background": "#FFFFFF",
+        "color_text": "#0E1B33",
+        "color_muted": "#4A5568",
+        "color_accent": "#D4FF3A",
+        "color_line": "#E2E6ED",
+        "color_surface": "#F3F5F8",
+        "padding_top": 112,
+        "padding_bottom": 112,
+        "eyebrow": "Match bundles",
+        "heading": "One bundle. Whole kit.",
+        "link_label": "View Full Package Details"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "featured_products_carousel": {
+      "type": "featured-products-carousel",
+      "settings": {
+        "color_background": "#FFFFFF",
+        "color_text": "#0E1B33",
+        "color_muted": "#4A5568",
+        "color_accent": "#D4FF3A",
+        "color_line": "#E2E6ED",
+        "color_surface": "#F3F5F8",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "ppv_desktop": 4,
+        "ppv_mobile": "1.2",
+        "eyebrow": "Shop the Look",
+        "heading": "Featured Collection",
+        "subtitle": "",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_quick_add": true
+      }
+    }
+  },
+  "order": [
+    "hero_slideshow",
+    "trust_row",
+    "sport_tiles",
+    "how_it_works",
+    "bundle_spotlight",
+    "featured_products_carousel",
+    "featured_collection"
+  ]
+}
