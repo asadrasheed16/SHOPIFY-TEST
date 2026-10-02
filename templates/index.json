@@ -12,10 +12,30 @@
     "hero_slideshow": {
       "type": "hero-slideshow",
       "blocks": {
+        "slide_XzJ9aU": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "video": "shopify://files/videos/Create_video_using_character_1080p_20260927120518.mp4",
+            "video_url": "",
+            "eyebrow": "New season",
+            "heading": "<p>Kit built for the pitch.</p>",
+            "subheading": "Custom teamwear from 10 pieces. Free design, free quote.",
+            "cta_primary_label": "Shop kits",
+            "cta_primary_url": "",
+            "cta_secondary_label": "Get a free quote",
+            "cta_secondary_url": "",
+            "show_club_card": false,
+            "club_name": "",
+            "club_subtitle": ""
+          }
+        },
         "slide_1": {
           "type": "slide",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/ronaldo-inspired-soccer-action.png",
+            "video_url": "",
             "eyebrow": "New season",
             "heading": "<p>Kit built for the pitch.</p>",
             "subheading": "Custom teamwear from 10 pieces. Free design, free quote.",
@@ -31,7 +51,9 @@
         "slide_2": {
           "type": "slide",
           "settings": {
+            "media_type": "image",
             "image": "shopify://shop_images/3_cd895827-ec26-4658-8350-d9f42f5c7a39.webp",
+            "video_url": "",
             "eyebrow": "Club shops",
             "heading": "<p>Your badge. Your colours.</p>",
             "subheading": "Set up a free club shop in minutes and let your members order direct.",
@@ -48,6 +70,8 @@
           "type": "slide",
           "disabled": true,
           "settings": {
+            "media_type": "image",
+            "video_url": "",
             "eyebrow": "Urban Camo",
             "heading": "<p>Training kit that stands out.</p>",
             "subheading": "Bold camo prints, squad-ready from just 10 pieces.",
@@ -62,6 +86,7 @@
         }
       },
       "block_order": [
+        "slide_XzJ9aU",
         "slide_1",
         "slide_2",
         "slide_3"
