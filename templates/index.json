@@ -188,6 +188,7 @@
           "settings": {
             "collection": "",
             "custom_title": "",
+            "custom_image": "shopify://shop_images/pomelli_photoshoot_image_1_1_0904.png",
             "fallback_title": "Football",
             "tile_url": "",
             "price_tag": "From £12 per player"
@@ -198,6 +199,7 @@
           "settings": {
             "collection": "",
             "custom_title": "",
+            "custom_image": "shopify://shop_images/Timelessly_rare____Shop_at.jpg",
             "fallback_title": "Rugby",
             "tile_url": "",
             "price_tag": "From £14 per player"
@@ -228,6 +230,7 @@
           "settings": {
             "collection": "",
             "custom_title": "",
+            "custom_image": "shopify://shop_images/logo-white.png",
             "fallback_title": "Darts",
             "tile_url": "",
             "price_tag": "From £12 per player"
