@@ -15,6 +15,7 @@
         "slide_1": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/ronaldo-inspired-soccer-action.png",
             "eyebrow": "New season",
             "heading": "<p>Kit built for the pitch.</p>",
             "subheading": "Custom teamwear from 10 pieces. Free design, free quote.",
@@ -30,6 +31,7 @@
         "slide_2": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/3_cd895827-ec26-4658-8350-d9f42f5c7a39.webp",
             "eyebrow": "Club shops",
             "heading": "<p>Your badge. Your colours.</p>",
             "subheading": "Set up a free club shop in minutes and let your members order direct.",
@@ -44,6 +46,7 @@
         },
         "slide_3": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "eyebrow": "Urban Camo",
             "heading": "<p>Training kit that stands out.</p>",
@@ -88,6 +91,7 @@
         "crest_1": {
           "type": "crest",
           "settings": {
+            "crest_image": "shopify://shop_images/bezel-set-cz-tennis-bracelet-1795119.webp",
             "crest_alt": ""
           }
         },
@@ -184,6 +188,7 @@
           "settings": {
             "collection": "",
             "custom_title": "",
+            "custom_image": "shopify://shop_images/pomelli_photoshoot_image_1_1_0904.png",
             "fallback_title": "Football",
             "tile_url": "",
             "price_tag": "From £12 per player"
@@ -194,6 +199,7 @@
           "settings": {
             "collection": "",
             "custom_title": "",
+            "custom_image": "shopify://shop_images/Timelessly_rare____Shop_at.jpg",
             "fallback_title": "Rugby",
             "tile_url": "",
             "price_tag": "From £14 per player"
@@ -224,6 +230,7 @@
           "settings": {
             "collection": "",
             "custom_title": "",
+            "custom_image": "shopify://shop_images/logo-white.png",
             "fallback_title": "Darts",
             "tile_url": "",
             "price_tag": "From £12 per player"
@@ -444,6 +451,7 @@
           "type": "reel_card",
           "settings": {
             "video": "shopify://files/videos/Create_video_using_character_1080p_20260927120518.mp4",
+            "video_url": "",
             "handle": "@nineties90_pro",
             "badge": "MATCH DAY",
             "caption": "Full sublimated match kit, custom crests, squad numbers — from 10 pieces.",
@@ -454,6 +462,7 @@
           "type": "reel_card",
           "settings": {
             "video": "shopify://files/videos/Create_video_shoot_1080p_20260927120324.mp4",
+            "video_url": "",
             "handle": "@grassroots_fc",
             "badge": "TRAINING",
             "caption": "Training tops in club colours delivered in under 4 weeks.",
@@ -463,6 +472,7 @@
         "reel_card_wPKkwa": {
           "type": "reel_card",
           "settings": {
+            "video_url": "",
             "handle": "@urbanrugby",
             "badge": "RUGBY",
             "caption": "Custom sublimated rugby jerseys — built tough, looks elite.",
@@ -472,6 +482,7 @@
         "reel_card_9qGdz4": {
           "type": "reel_card",
           "settings": {
+            "video_url": "",
             "handle": "@cricketclub_uk",
             "badge": "CRICKET",
             "caption": "Club whites with embroidered crests. Pro finish, grassroots price.",
@@ -481,6 +492,7 @@
         "reel_card_LKazNa": {
           "type": "reel_card",
           "settings": {
+            "video_url": "",
             "handle": "@darts_kings",
             "badge": "DARTS",
             "caption": "Custom darts shirts for your team — bold prints, quick turnaround.",
@@ -497,12 +509,12 @@
       ],
       "name": "Community Reels",
       "settings": {
-        "color_background": "#0E1B33",
-        "color_text": "#FFFFFF",
-        "color_muted": "#8E9DB4",
-        "color_accent": "#D4FF3A",
-        "color_line": "#1E2E4A",
-        "color_surface": "#1A2B48",
+        "color_background": "#0e1b33",
+        "color_text": "#ffffff",
+        "color_muted": "#8e9db4",
+        "color_accent": "#d4ff3a",
+        "color_line": "#1e2e4a",
+        "color_surface": "#1a2b48",
         "padding_top": 96,
         "padding_bottom": 96,
         "eyebrow": "Community",
@@ -579,12 +591,12 @@
       ],
       "name": "Reviews Wall",
       "settings": {
-        "color_background": "#FFFFFF",
-        "color_text": "#0E1B33",
-        "color_muted": "#4A5568",
-        "color_accent": "#D4FF3A",
-        "color_line": "#E2E6ED",
-        "color_surface": "#F3F5F8",
+        "color_background": "#ffffff",
+        "color_text": "#0e1b33",
+        "color_muted": "#4a5568",
+        "color_accent": "#d4ff3a",
+        "color_line": "#e2e6ed",
+        "color_surface": "#f3f5f8",
         "padding_top": 96,
         "padding_bottom": 96,
         "eyebrow": "Tested by athletes",
@@ -596,25 +608,119 @@
     "final_cta_club": {
       "type": "final-cta-club",
       "blocks": {
-        "perk_1": { "type": "perk_item", "settings": { "text": "10% Off First Order" } },
-        "perk_2": { "type": "perk_item", "settings": { "text": "VIP Drop Access" } },
-        "perk_3": { "type": "perk_item", "settings": { "text": "Athlete Tested" } },
-        "perk_4": { "type": "perk_item", "settings": { "text": "Zero Spam" } }
+        "perk_1": {
+          "type": "perk_item",
+          "settings": {
+            "text": "10% Off First Order"
+          }
+        },
+        "perk_2": {
+          "type": "perk_item",
+          "settings": {
+            "text": "VIP Drop Access"
+          }
+        },
+        "perk_3": {
+          "type": "perk_item",
+          "settings": {
+            "text": "Athlete Tested"
+          }
+        },
+        "perk_4": {
+          "type": "perk_item",
+          "settings": {
+            "text": "Zero Spam"
+          }
+        }
       },
-      "block_order": ["perk_1", "perk_2", "perk_3", "perk_4"],
-      "settings": {}
+      "block_order": [
+        "perk_1",
+        "perk_2",
+        "perk_3",
+        "perk_4"
+      ],
+      "settings": {
+        "bg_style": "dark",
+        "color_surface": "#f3f5f8",
+        "color_text": "#0e1b33",
+        "color_accent": "#d4ff3a",
+        "color_muted": "#8e9db4",
+        "color_line": "#1e2e4a",
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "eyebrow": "Athlete Club",
+        "heading": "Join the squad",
+        "subheading": "Sign up for exclusive kit drops, early access to sales, and pro athlete training tips delivered straight to your inbox.",
+        "button_label": "Join the club"
+      }
     },
     "faq_accordion": {
       "type": "faq-accordion",
       "blocks": {
-        "faq_1": { "type": "faq_item", "settings": { "question": "How do I care for my latex goalkeeper gloves?", "category": "Gear Care" } },
-        "faq_2": { "type": "faq_item", "settings": { "question": "What is the turnaround time for custom kits?", "category": "Shipping & Delivery" } },
-        "faq_3": { "type": "faq_item", "settings": { "question": "What is the optimal PSI for match footballs?", "category": "Gear Care" } },
-        "faq_4": { "type": "faq_item", "settings": { "question": "How do your rugby jerseys fit compared to high street brands?", "category": "Sizing & Fit" } },
-        "faq_5": { "type": "faq_item", "settings": { "question": "Can I order replacements for new squad members later?", "category": "Orders & Returns" } }
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I care for my latex goalkeeper gloves?",
+            "answer": "",
+            "category": "Gear Care"
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the turnaround time for custom kits?",
+            "answer": "",
+            "category": "Shipping & Delivery"
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the optimal PSI for match footballs?",
+            "answer": "",
+            "category": "Gear Care"
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do your rugby jerseys fit compared to high street brands?",
+            "answer": "",
+            "category": "Sizing & Fit"
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I order replacements for new squad members later?",
+            "answer": "",
+            "category": "Orders & Returns"
+          }
+        }
       },
-      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
-      "settings": {}
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
+      "settings": {
+        "bg_style": "default",
+        "color_background": "#ffffff",
+        "color_surface": "#f3f5f8",
+        "color_text": "#0e1b33",
+        "color_accent": "#d4ff3a",
+        "color_muted": "#4a5568",
+        "color_line": "#e2e6ed",
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "eyebrow": "GEAR INTELLIGENCE",
+        "heading": "Frequently Asked Questions",
+        "subheading": "Everything you need to know about our custom teamwear process, fabrics, and care instructions.",
+        "cta_label": "Have another question? Contact Us",
+        "cta_link": ""
+      }
     }
   },
   "order": [
@@ -628,6 +734,6 @@
     "community_grid_JTpDkJ",
     "reviews_wall_ErNXPU",
     "final_cta_club",
-    "faq_accordion"]
+    "faq_accordion"
+  ]
 }
-
