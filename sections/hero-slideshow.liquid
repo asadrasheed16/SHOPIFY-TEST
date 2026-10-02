@@ -1,4 +1,4 @@
-﻿{%- comment -%}
+{%- comment -%}
   sections/hero-slideshow.liquid
   Nineties90 Direction C "Clean Sport Motion"
   Source: data-section="HeroSlideshow" (ref lines 1068-1092)
@@ -29,11 +29,15 @@
 
 {%- style -%}
   #shopify-section-{{ section.id }} {
-    --n90-bg:     {{ bg }};
-    --n90-ink:    {{ ink }};
-    --n90-accent: {{ accent }};
-    --n90-muted:  {{ muted }};
-    --n90-line:   {{ line_col }};
+    --nn-canvas: #FFFFFF;
+    --nn-ink: #181818;
+    --nn-surface: #F4F4F5;
+    --nn-volt: #D4FF3A;
+    --n90-bg: var(--nn-canvas);
+    --n90-ink: var(--nn-ink);
+    --n90-accent: var(--nn-volt);
+    --n90-muted: var(--nn-ink);
+    --n90-line: var(--nn-ink);
     --n90-ease:   cubic-bezier(.2,.7,.2,1);
     --n90-spring: cubic-bezier(.2,1.25,.35,1);
     --n90-radius: 4px;
@@ -67,8 +71,10 @@
     grid-column: 1 / span 7;
     position: relative; overflow: hidden;
     border-radius: var(--n90-radius);
-    background: var(--n90-line);
-    aspect-ratio: {{ img_ratio }};
+    background-color: var(--nn-surface, #F4F4F5);
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 580px;
     clip-path: inset(0 100% 0 0);
     transition: clip-path 1.1s var(--n90-ease);
   }
@@ -132,23 +138,23 @@
   .n90-hs__eyebrow {
     font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
     font-size: 14px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: .18em; color: var(--n90-ink);
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--nn-ink, #181818);
   }
   .n90-hs__heading {
     font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
     font-size: clamp(46px, {{ title_vw }}vw, {{ title_max }}px);
-    font-weight: 600; text-transform: uppercase; letter-spacing: .005em;
-    line-height: .95; margin: 0; color: var(--n90-ink);
+    font-weight: 700; text-transform: uppercase; letter-spacing: .005em;
+    line-height: .95; margin: 0; color: var(--nn-ink, #181818);
   }
   .n90-hs__heading > p { margin: 0; }
-  .n90-hs__sub { font-size: clamp(16px, 1.25vw, 19px); line-height: 1.55; color: var(--n90-muted); }
+  .n90-hs__sub { font-size: clamp(16px, 1.25vw, 19px); line-height: 1.55; color: var(--nn-ink, #181818); }
   .n90-hs__cta { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
   .n90-hs__btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
     min-height: 52px; padding: 0 28px;
-    background: var(--n90-accent); color: var(--n90-ink);
+    background-color: var(--nn-volt, #D4FF3A); color: #181818;
     font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-    font-size: 17px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em;
+    font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
     border-radius: var(--n90-radius); border: 0; text-decoration: none; cursor: pointer;
     position: relative; overflow: hidden; white-space: nowrap;
     transition: opacity .2s, transform .35s var(--n90-ease);
@@ -166,9 +172,9 @@
     display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
     font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
     font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em;
-    color: var(--n90-ink);
+    color: var(--nn-ink, #181818);
     text-decoration: underline; text-underline-offset: 7px;
-    text-decoration-thickness: 1px; text-decoration-color: var(--n90-ink);
+    text-decoration-thickness: 1px; text-decoration-color: var(--nn-ink, #181818);
     transition: text-underline-offset .25s var(--n90-ease), text-decoration-thickness .15s;
     background: none; border: 0; cursor: pointer; padding: 0; white-space: nowrap;
   }
@@ -205,12 +211,12 @@
   .n90-hs[data-paused] .n90-hs__bar--on > span { animation-play-state: paused; }
   .n90-hs__arrow {
     width: 48px; height: 48px; border-radius: 50%;
-    border: 1px solid var(--n90-ink);
+    border: 1px solid var(--nn-ink, #181818);
     display: inline-flex; align-items: center; justify-content: center;
-    flex: none; background: transparent; color: var(--n90-ink); cursor: pointer;
+    flex: none; background: transparent; color: var(--nn-ink, #181818); cursor: pointer;
     transition: background .25s, color .25s, transform .3s var(--n90-spring);
   }
-  .n90-hs__arrow:hover  { background: var(--n90-ink); color: var(--n90-bg); }
+  .n90-hs__arrow:hover  { background: var(--nn-ink, #181818); color: var(--nn-canvas, #FFFFFF); }
   .n90-hs__arrow:active { transform: scale(.92); }
   @media (prefers-reduced-motion: reduce) {
     #shopify-section-{{ section.id }} *,
