@@ -615,6 +615,17 @@
       },
       "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
       "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand": { "type": "brand", "settings": {} },
+        "menu_gear": { "type": "link_list", "settings": { "heading": "Gear" } },
+        "menu_support": { "type": "link_list", "settings": { "heading": "Support" } },
+        "newsletter": { "type": "newsletter", "settings": { "heading": "Match Alerts" } }
+      },
+      "block_order": ["brand", "menu_gear", "menu_support", "newsletter"],
+      "settings": {}
     }
   },
   "order": [
@@ -628,6 +639,7 @@
     "community_grid_JTpDkJ",
     "reviews_wall_ErNXPU",
     "final_cta_club",
-    "faq_accordion"
+    "faq_accordion",
+    "footer"
   ]
 }
