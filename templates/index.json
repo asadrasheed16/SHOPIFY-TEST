@@ -619,11 +619,12 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "menu_sports": { "type": "link_list", "settings": { "heading": "Sports" } },
-        "menu_shop": { "type": "link_list", "settings": { "heading": "Shop" } },
-        "menu_help": { "type": "link_list", "settings": { "heading": "Help" } }
+        "brand": { "type": "brand", "settings": {} },
+        "menu_gear": { "type": "link_list", "settings": { "heading": "Gear" } },
+        "menu_support": { "type": "link_list", "settings": { "heading": "Support" } },
+        "newsletter": { "type": "newsletter", "settings": { "heading": "Match Alerts" } }
       },
-      "block_order": ["menu_sports", "menu_shop", "menu_help"],
+      "block_order": ["brand", "menu_gear", "menu_support", "newsletter"],
       "settings": {}
     }
   },
@@ -638,7 +639,6 @@
     "community_grid_JTpDkJ",
     "reviews_wall_ErNXPU",
     "final_cta_club",
-    "faq_accordion",
-    "footer"
-  ]
+    "faq_accordion"]
 }
+
