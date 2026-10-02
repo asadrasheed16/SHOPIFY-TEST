@@ -510,6 +510,88 @@
         "description": "Real clubs. Real kit. See how teams are wearing Nineties90.",
         "cards_per_view": 3
       }
+    },
+    "reviews_wall_ErNXPU": {
+      "type": "reviews-wall",
+      "blocks": {
+        "review_7Q9rMV": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "date": "1 week ago",
+            "title": "Unreal quality for the price.",
+            "body": "Ordered a full set of match kits for our squad. The sublimation is crisp, colours are vibrant, and the fabric breathes incredibly well during 90 minutes.",
+            "author": "James T.",
+            "location": "London, UK",
+            "verified": true,
+            "discipline": "Central Midfielder",
+            "product": ""
+          }
+        },
+        "review_4J7c3V": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "date": "3 weeks ago",
+            "title": "Best fit I've ever worn.",
+            "body": "Usually struggle with rugby jerseys being too boxy. The athletic fit on these is perfect. Snug where it needs to be, but full range of motion in the shoulders.",
+            "author": "Marcus R.",
+            "location": "London, UK",
+            "verified": true,
+            "discipline": "Rugby Union / Flanker",
+            "product": ""
+          }
+        },
+        "review_7pft8q": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "date": "1 month ago",
+            "title": "Survived a full season",
+            "body": "These kits have been slide-tackled, muddy, and washed 40+ times. Not a single thread loose, and the sponsor logos haven't peeled because they are fully sublimated. 10/10.",
+            "author": "Dave W.",
+            "location": "London, UK",
+            "verified": true,
+            "discipline": "Sunday League Coach",
+            "product": ""
+          }
+        },
+        "review_ma3yPR": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "date": "2 months ago",
+            "title": "Lightning fast delivery",
+            "body": "Needed emergency kits for a tournament after our old supplier let us down. Nineties90 delivered custom sublimated shirts in exactly 3 weeks. Saved our tour.",
+            "author": "Sarah M.",
+            "location": "London, UK",
+            "verified": true,
+            "discipline": "Netball Centre",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_7Q9rMV",
+        "review_4J7c3V",
+        "review_7pft8q",
+        "review_ma3yPR"
+      ],
+      "name": "Reviews Wall",
+      "settings": {
+        "color_background": "#FFFFFF",
+        "color_text": "#0E1B33",
+        "color_muted": "#4A5568",
+        "color_accent": "#D4FF3A",
+        "color_line": "#E2E6ED",
+        "color_surface": "#F3F5F8",
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "eyebrow": "Tested by athletes",
+        "heading": "Don't just take our word for it",
+        "rating_score": "4.9",
+        "total_reviews": "from 1,200+ Verified Athletes"
+      }
     }
   },
   "order": [
@@ -520,6 +602,7 @@
     "bundle_spotlight",
     "featured_products_carousel",
     "featured_collection",
-    "community_grid_JTpDkJ"
+    "community_grid_JTpDkJ",
+    "reviews_wall_ErNXPU"
   ]
 }
