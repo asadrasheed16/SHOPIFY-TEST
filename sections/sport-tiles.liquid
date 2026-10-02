@@ -1,4 +1,4 @@
-﻿{%- comment -%}
+{%- comment -%}
   sections/sport-tiles.liquid
   Nineties90 — Direction C "Clean Sport · Motion"
   Source: <section class="sec" data-section="SportTiles"> (ref lines 1108-1123)
@@ -252,12 +252,18 @@
   }
 
   /* ── Scroll-reveal entrance (pure CSS + IntersectionObserver JS) ── */
+  /* Tiles start hidden; JS (or the noscript fallback below) reveals them */
   .n90-st__tile {
     opacity: 0;
     transform: translateY(22px);
     transition: opacity .85s var(--st-ease), transform .85s var(--st-ease);
   }
   .n90-st__tile.n90-is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  /* Safety: if JS is not available / blocked, ensure tiles are always shown */
+  .n90-st--no-js .n90-st__tile {
     opacity: 1;
     transform: none;
   }
@@ -312,7 +318,7 @@
 {%- endstyle -%}
 
 <section
-  class="n90-st"
+  class="n90-st n90-st--no-js"
   id="n90-st-{{ section.id }}"
   data-section="SportTiles"
 >
@@ -499,18 +505,29 @@
 <script>
 (function () {
   'use strict';
+  /* Remove the no-JS class now that JS is confirmed running */
+  var section = document.getElementById('n90-st-{{ section.id }}');
+  if (section) section.classList.remove('n90-st--no-js');
+
   /* Scroll-reveal: add .n90-is-visible with staggered delay when tile enters viewport */
   var grid = document.getElementById('n90-st-grid-{{ section.id }}');
   if (!grid) return;
   var tiles = Array.from(grid.querySelectorAll('.n90-st__tile'));
   if (!tiles.length) return;
 
+  /* Safety net: reveal all tiles after 1 s in case IntersectionObserver never fires */
+  var safetyTimer = setTimeout(function() {
+    tiles.forEach(function(t) { t.classList.add('n90-is-visible'); });
+  }, 1000);
+
   if (!('IntersectionObserver' in window)) {
     /* Fallback: show immediately */
+    clearTimeout(safetyTimer);
     tiles.forEach(function(t) { t.classList.add('n90-is-visible'); });
     return;
   }
 
+  var revealed = 0;
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (!entry.isIntersecting) return;
@@ -518,6 +535,8 @@
       var delay = parseInt(tile.dataset.revealDelay, 10) || 0;
       setTimeout(function() { tile.classList.add('n90-is-visible'); }, delay);
       observer.unobserve(tile);
+      revealed++;
+      if (revealed >= tiles.length) clearTimeout(safetyTimer);
     });
   }, { threshold: 0.1 });
 

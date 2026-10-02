@@ -1,4 +1,4 @@
-﻿{%- comment -%}
+{%- comment -%}
   sections/featured-products-carousel.liquid
   Nineties90 — Direction C "Clean Sport · Motion"
 {%- endcomment -%}
@@ -12,8 +12,11 @@
   assign surface  = section.settings.color_surface
   assign pt       = section.settings.padding_top
   assign pb       = section.settings.padding_bottom
-  assign ppv_d    = section.settings.ppv_desktop
-  assign ppv_m    = section.settings.ppv_mobile
+  assign ppv_d    = section.settings.ppv_desktop | default: 4
+  assign ppv_m    = section.settings.ppv_mobile | default: '1.2'
+  if ppv_m == blank
+    assign ppv_m = '1.2'
+  endif
 -%}
 
 {%- style -%}
