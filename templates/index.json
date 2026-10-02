@@ -232,6 +232,28 @@
         "show_vendor": true,
         "show_quick_add": true
       }
+    },
+    "community_grid": {
+      "type": "community-grid",
+      "blocks": {
+        "reel_1": { "type": "reel_card", "settings": { "handle": "@nineties90_pro", "badge": "MATCH DAY", "caption": "Full sublimated match kit, custom crests, squad numbers — from 10 pieces." } },
+        "reel_2": { "type": "reel_card", "settings": { "handle": "@grassroots_fc", "badge": "TRAINING", "caption": "Training tops in club colours delivered in under 4 weeks." } },
+        "reel_3": { "type": "reel_card", "settings": { "handle": "@urbanrugby", "badge": "RUGBY", "caption": "Custom sublimated rugby jerseys — built tough, looks elite." } },
+        "reel_4": { "type": "reel_card", "settings": { "handle": "@cricketclub_uk", "badge": "CRICKET", "caption": "Club whites with embroidered crests. Pro finish, grassroots price." } }
+      },
+      "block_order": ["reel_1", "reel_2", "reel_3", "reel_4"],
+      "settings": {}
+    },
+    "reviews_wall": {
+      "type": "reviews-wall",
+      "blocks": {
+        "review_1": { "type": "review", "settings": { "author": "James T.", "discipline": "Central Midfielder" } },
+        "review_2": { "type": "review", "settings": { "author": "Marcus R.", "discipline": "Rugby Union / Flanker" } },
+        "review_3": { "type": "review", "settings": { "author": "Dave W.", "discipline": "Sunday League Coach" } },
+        "review_4": { "type": "review", "settings": { "author": "Sarah M.", "discipline": "Netball Centre" } }
+      },
+      "block_order": ["review_1", "review_2", "review_3", "review_4"],
+      "settings": {}
     }
   },
   "order": [
@@ -241,6 +263,8 @@
     "how_it_works",
     "bundle_spotlight",
     "featured_products_carousel",
+    "community_grid",
+    "reviews_wall",
     "featured_collection"
   ]
 }
