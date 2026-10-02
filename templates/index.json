@@ -91,6 +91,7 @@
         "crest_1": {
           "type": "crest",
           "settings": {
+            "crest_image": "shopify://shop_images/bezel-set-cz-tennis-bracelet-1795119.webp",
             "crest_alt": ""
           }
         },
