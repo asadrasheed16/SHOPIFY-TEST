@@ -1,261 +1,379 @@
 {%- comment -%}
   sections/footer.liquid
-  Nineties90 — Dark Footer Refactor
+  Nineties90 — Direction C "Clean Sport · Motion"
+  Exact match from reference HTML: lines 1716-1733, CSS lines 316-328
 {%- endcomment -%}
 
 <style>
-  .n90-footer-wrapper {
-    background-color: #0b0d0e;
-    color: #ffffff;
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-family: 'Barlow', sans-serif;
-  }
-  
-  .n90-footer-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 60px 24px 30px;
-  }
+  /* ══════════════════════════════════════════════════════════
+     Direction C · Clean Sport — Global Design Tokens
+     Exact values from reference .dir-c ruleset (line 38-43)
+     ══════════════════════════════════════════════════════════ */
+  #shopify-section-{{ section.id }} {
+    --bg: #FFFFFF;
+    --surface: #F3F5F8;
+    --ink: #0E1B33;
+    --muted: #4A5568;
+    --line: #E2E6ED;
+    --line-strong: #7A879B;
+    --accent: #D4FF3A;
+    --btn-bg: #D4FF3A;
+    --btn-ink: #0E1B33;
+    --radius: 4px;
+    --pill: 4px;
+    --dfam: 'Barlow Condensed', system-ui, sans-serif;
+    --bfam: 'Barlow', system-ui, sans-serif;
+    --dweight: 600;
+    --dcase: uppercase;
+    --dtrack: 0.005em;
+    --dlh: 0.95;
+    --logo-fam: 'Barlow Condensed', sans-serif;
+    --logo-weight: 700;
+    --logo-track: 0.12em;
+    --logo-size: 23px;
+    --eb-track: 0.18em;
 
-  .n90-footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
-    gap: 40px;
-  }
-  
-  @media screen and (max-width: 1024px) {
-    .n90-footer-grid {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .n90-footer-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-  }
-
-  .n90-footer-col-header {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #ffffff;
+    /* Scoped typography */
+    font-family: var(--bfam);
     font-size: 16px;
-    margin-bottom: 16px;
-    display: block;
+    line-height: 1.5;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  #shopify-section-{{ section.id }} *,
+  #shopify-section-{{ section.id }} *::before,
+  #shopify-section-{{ section.id }} *::after { box-sizing: border-box; }
+  #shopify-section-{{ section.id }} button {
+    font: inherit; color: inherit; background: none; border: 0;
+    padding: 0; margin: 0; cursor: pointer; text-align: inherit; letter-spacing: inherit;
   }
 
-  .n90-footer-link {
-    color: #9ca3af;
-    text-decoration: none;
+  /* ── Reference CSS: .wrap (line 95-96) ── */
+  .n90-ftr .wrap { padding: 0 64px; max-width: 1440px; margin: 0 auto; }
+  @media screen and (max-width: 749px) { .n90-ftr .wrap { padding: 0 16px; } }
+
+  /* ── Reference CSS: .cols / .s4 / .s8 (lines 97-100) ── */
+  .n90-ftr .cols {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+  .n90-ftr .s4  { grid-column: span 4; }
+  .n90-ftr .s8  { grid-column: span 8; }
+  @media screen and (max-width: 749px) {
+    .n90-ftr .cols { display: flex; flex-direction: column; gap: 32px; }
+  }
+
+  /* ── Reference CSS: .logo (line 136-138) ── */
+  .n90-ftr .logo {
+    font-family: var(--logo-fam);
+    font-weight: var(--logo-weight);
+    letter-spacing: var(--logo-track);
+    font-size: var(--logo-size);
+    white-space: nowrap;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--ink);
+    font-style: italic;           /* .dir-c .logo (line 137) */
+  }
+
+  /* ── Reference CSS: .eyebrow (lines 59, 62) ── */
+  .n90-ftr .eyebrow {
+    font-family: var(--dfam);
+    font-weight: 600;
     font-size: 14px;
-    line-height: 2;
-    display: block;
-    transition: color 0.2s ease;
+    letter-spacing: var(--eb-track);
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;          /* .ftr .eyebrow (line 319) */
   }
 
-  .n90-footer-link:hover {
-    color: #ffffff;
+  /* ── Reference CSS: utility helpers (line 65-70) ── */
+  .n90-ftr .small  { font-size: 14px; }
+  .n90-ftr .muted  { color: var(--muted); }
+  .n90-ftr .mt8    { margin-top: 8px; }
+  .n90-ftr .mt16   { margin-top: 16px; }
+  .n90-ftr .mt24   { margin-top: 24px; }
+
+  /* ── Reference CSS: .ftr (lines 317-318) ── */
+  .n90-ftr {
+    border-top: 1px solid var(--line);
+    padding: 80px 0 32px;
+  }
+  @media screen and (max-width: 749px) {
+    .n90-ftr { padding: 48px 0 96px; }
   }
 
-  .n90-footer-brand p {
-    color: #9ca3af;
+  /* ── Reference CSS: .flink (lines 320-321) ── */
+  .n90-ftr .flink {
+    display: flex;
+    align-items: center;
+    min-height: 36px;
     font-size: 14px;
-    line-height: 1.6;
-    margin-top: 12px;
-  }
-
-  .n90-footer-brand .logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 24px;
-    letter-spacing: 0.1em;
-    color: #ffffff;
+    color: var(--muted);
+    width: 100%;
     text-decoration: none;
+    transition: color 0.15s;
+  }
+  .n90-ftr .flink:hover { color: var(--ink); }
+
+  /* ── Reference CSS: .ftr-cols (lines 324-325) ── */
+  .n90-ftr .ftr-cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    padding-left: 64px;
+  }
+  @media screen and (max-width: 749px) {
+    .n90-ftr .ftr-cols {
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 16px;
+      padding-left: 0;
+    }
   }
 
-  .n90-newsletter-form {
+  /* ── Reference CSS: .field / .sub-row / .input (lines 322, 331-335) ── */
+  .n90-ftr .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .n90-ftr .label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .n90-ftr .sub-row {
     display: flex;
     gap: 8px;
-    margin-top: 12px;
+    margin-top: 8px;
   }
-
-  .n90-newsletter-input {
-    flex-grow: 1;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    padding: 10px 16px;
-    border-radius: 4px;
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    outline: none;
+  .n90-ftr .input {
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
+    border-radius: var(--radius);
+    width: 100%;
+    font-size: 16px;
+    font-family: inherit;
   }
+  .n90-ftr .input::placeholder { color: var(--muted); }
+  .n90-ftr .input:focus { outline: 2px solid var(--ink); outline-offset: 2px; }
 
-  .n90-newsletter-input::placeholder {
-    color: #9ca3af;
-  }
-
-  .n90-newsletter-input:focus {
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
-  .n90-newsletter-btn {
-    background: var(--nn-accent, #ccff00);
-    color: #000;
-    font-weight: 700;
-    border-radius: 4px;
-    border: none;
-    padding: 10px 18px;
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    cursor: pointer;
-    transition: opacity 0.2s;
+  /* ── Reference CSS: .btn-line / .btn-sm (lines 78-82) ── */
+  .n90-ftr .btn-line {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 0 24px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: var(--radius);
     white-space: nowrap;
+    transition: background 0.2s;
+    text-transform: uppercase;
+    font-family: var(--dfam);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+  }
+  .n90-ftr .btn-line:hover { background: var(--surface); }
+  .n90-ftr .btn-sm {
+    min-height: 44px;
+    padding: 0 18px;
+    font-size: 15px;
   }
 
-  .n90-newsletter-btn:hover {
-    opacity: 0.9;
-  }
-
-  .n90-sub-footer {
+  /* ── Reference CSS: .ftr-bottom (lines 323, 328) ── */
+  .n90-ftr .ftr-bottom {
+    border-top: 1px solid var(--line);
+    margin-top: 64px;
+    padding-top: 24px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 60px;
-    padding-top: 24px;
-    color: #9ca3af;
+    gap: 16px;
     font-size: 13px;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .n90-sub-policies {
-    display: flex;
-    gap: 16px;
+    color: var(--muted);
     flex-wrap: wrap;
   }
-
-  .n90-sub-policies a {
-    color: #9ca3af;
-    text-decoration: none;
-    transition: color 0.2s;
+  @media screen and (max-width: 749px) {
+    .n90-ftr .ftr-bottom {
+      margin-top: 40px;
+      flex-direction: column;
+    }
   }
 
-  .n90-sub-policies a:hover {
-    color: #ffffff;
+  /* ── Payment SVGs ── */
+  .n90-ftr .ftr-payments {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
   }
+  .n90-ftr .ftr-payments svg,
+  .n90-ftr .ftr-payments .icon { width: 32px; height: auto; }
+
+  /* ── Policy links ── */
+  .n90-ftr .ftr-policies { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+  .n90-ftr .ftr-policies a { color: var(--muted); text-decoration: none; }
+  .n90-ftr .ftr-policies a:hover { color: var(--ink); }
+
+  /* ── Localization select ── */
+  .n90-ftr .ftr-select {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 6px 28px 6px 10px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%234A5568' stroke-width='2'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+
+  /* ── Social row ── */
+  .n90-ftr .ftr-social { display: flex; gap: 12px; align-items: center; }
+  .n90-ftr .ftr-social a { color: var(--muted); transition: color 0.15s; display: inline-flex; }
+  .n90-ftr .ftr-social a:hover { color: var(--ink); }
+  .n90-ftr .ftr-social svg { width: 20px; height: 20px; }
+
+  /* ── Logo image ── */
+  .n90-ftr .logo-img { display: block; height: auto; }
+
+  /* Success/error micro-states */
+  .n90-ftr .form-ok  { color: var(--accent); font-size: 13px; margin-top: 8px; }
+  .n90-ftr .form-err { color: #FF4D4D; font-size: 13px; margin-top: 8px; }
 </style>
 
-<div class="n90-footer-wrapper">
-  <div class="n90-footer-container">
-    <div class="n90-footer-grid">
-      
-      {%- comment -%} 1. Brand Column {%- endcomment -%}
-      <div class="n90-footer-brand">
-        {%- if section.settings.logo != blank -%}
-          <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name | escape }}" style="max-width: {{ section.settings.logo_width }}px; height: auto;">
-        {%- else -%}
-          <a href="/" class="logo">{{ shop.name }}</a>
-        {%- endif -%}
-        <p>{{ section.settings.brand_bio | escape }}</p>
-      </div>
+{%- comment -%}
+  ════════════════════════════════════════════════════════════
+  MARKUP — Exact mirror of reference lines 1717-1733
+  ════════════════════════════════════════════════════════════
+{%- endcomment -%}
 
-      {%- comment -%} 2. Column: Sports (or block 1) {%- endcomment -%}
-      <div class="n90-footer-nav">
-        {%- assign col1_block = section.blocks[0] -%}
-        <span class="n90-footer-col-header">{{ col1_block.settings.heading | default: 'Sports' }}</span>
-        {%- if col1_block and col1_block.settings.menu.links.size > 0 -%}
-          {%- for link in col1_block.settings.menu.links -%}
-            <a href="{{ link.url }}" class="n90-footer-link">{{ link.title }}</a>
-          {%- endfor -%}
-        {%- else -%}
-          <a href="#" class="n90-footer-link">Footballs</a>
-          <a href="#" class="n90-footer-link">Goalkeeper Gloves</a>
-          <a href="#" class="n90-footer-link">Kits</a>
-          <a href="#" class="n90-footer-link">Training Gear</a>
-        {%- endif -%}
-      </div>
+<footer class="n90-ftr" data-section="Footer">
+<div class="wrap">
+<div class="cols">
 
-      {%- comment -%} 3. Column: Shop (or block 2) {%- endcomment -%}
-      <div class="n90-footer-nav">
-        {%- assign col2_block = section.blocks[1] -%}
-        <span class="n90-footer-col-header">{{ col2_block.settings.heading | default: 'Shop' }}</span>
-        {%- if col2_block and col2_block.settings.menu.links.size > 0 -%}
-          {%- for link in col2_block.settings.menu.links -%}
-            <a href="{{ link.url }}" class="n90-footer-link">{{ link.title }}</a>
-          {%- endfor -%}
-        {%- else -%}
-          <a href="#" class="n90-footer-link">New Drops</a>
-          <a href="#" class="n90-footer-link">Best Sellers</a>
-          <a href="#" class="n90-footer-link">Club Bundles</a>
-        {%- endif -%}
-      </div>
+  {%- comment -%}── Brand + Newsletter (s4) — reference line 1720-1724 ──{%- endcomment -%}
+  <div class="s4">
+    {%- if section.settings.logo != blank -%}
+      <img class="logo-img" src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name | escape }}" width="{{ section.settings.logo_width }}" loading="lazy">
+    {%- else -%}
+      <span class="logo">{{ shop.name }}</span>
+    {%- endif -%}
 
-      {%- comment -%} 4. Column: Help (or block 3) {%- endcomment -%}
-      <div class="n90-footer-nav">
-        {%- assign col3_block = section.blocks[2] -%}
-        <span class="n90-footer-col-header">{{ col3_block.settings.heading | default: 'Help' }}</span>
-        {%- if col3_block and col3_block.settings.menu.links.size > 0 -%}
-          {%- for link in col3_block.settings.menu.links -%}
-            <a href="{{ link.url }}" class="n90-footer-link">{{ link.title }}</a>
-          {%- endfor -%}
-        {%- else -%}
-          <a href="#" class="n90-footer-link">Size Guide</a>
-          <a href="#" class="n90-footer-link">Shipping & Returns</a>
-          <a href="#" class="n90-footer-link">Latex Care</a>
-          <a href="#" class="n90-footer-link">Contact</a>
+    <p class="small muted mt8">{{ section.settings.brand_bio | escape }}</p>
+
+    {%- if section.settings.show_social -%}
+      <div class="ftr-social mt16">
+        {%- if settings.social_instagram_link != blank -%}
+          <a href="{{ settings.social_instagram_link }}" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.social_tiktok_link != blank -%}
+          <a href="{{ settings.social_tiktok_link }}" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82A4.28 4.28 0 0115 2h-3v14a3 3 0 11-2-2.83V8a7 7 0 104 6.72V10.5a4.26 4.26 0 002.6-4.68z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.social_youtube_link != blank -%}
+          <a href="{{ settings.social_youtube_link }}" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.4 31.4 0 000 12a31.4 31.4 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.4 31.4 0 0024 12a31.4 31.4 0 00-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.social_twitter_link != blank -%}
+          <a href="{{ settings.social_twitter_link }}" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
         {%- endif -%}
       </div>
+    {%- endif -%}
 
-      {%- comment -%} 5. Newsletter Column {%- endcomment -%}
-      <div class="n90-footer-newsletter">
-        <span class="n90-footer-col-header">{{ section.settings.newsletter_title | escape | default: 'Stay in the loop' }}</span>
-        <p style="color: #9ca3af; font-size: 14px; margin-bottom: 12px; line-height: 1.5;">{{ section.settings.newsletter_text | escape | default: 'Get the latest drops and exclusive offers directly to your inbox.' }}</p>
-        {% form 'customer' %}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="n90-newsletter-form">
-            <input class="n90-newsletter-input" type="email" name="contact[email]" placeholder="Email address" required aria-label="Email address">
-            <button type="submit" class="n90-newsletter-btn">Sign up</button>
-          </div>
-          {%- if form.posted_successfully? -%}
-            <p style="color: var(--nn-accent, #ccff00); font-size: 13px; margin-top: 8px;">Thanks for subscribing!</p>
-          {%- elsif form.errors -%}
-            <p style="color: #FF4D4D; font-size: 13px; margin-top: 8px;">{{ form.errors | default_errors }}</p>
-          {%- endif -%}
-        {% endform %}
+    {%- comment -%}── Newsletter — reference line 1723 ──{%- endcomment -%}
+    {% form 'customer' %}
+      <div class="field mt24">
+        <label class="label" for="nn-nl-{{ section.id }}">{{ section.settings.newsletter_title | escape }}</label>
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="sub-row">
+          <input id="nn-nl-{{ section.id }}" class="input" type="email" name="contact[email]" placeholder="Email address" style="min-height: 44px" required aria-label="Email address">
+          <button type="submit" class="btn-line btn-sm">Sign up</button>
+        </div>
       </div>
-
-    </div>
-
-    {%- comment -%} Sub-Footer {%- endcomment -%}
-    <div class="n90-sub-footer">
-      <div>
-        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.
-      </div>
-      
-      <div class="n90-sub-policies">
-        {%- if shop.policies != blank -%}
-          {%- for policy in shop.policies -%}
-            {%- if policy -%}
-              <a href="{{ policy.url }}">{{ policy.title }}</a>
-            {%- endif -%}
-          {%- endfor -%}
-        {%- else -%}
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Refund Policy</a>
-        {%- endif -%}
-      </div>
-    </div>
-
+      {%- if form.posted_successfully? -%}
+        <p class="form-ok">Thanks for subscribing!</p>
+      {%- elsif form.errors -%}
+        <p class="form-err">{{ form.errors | default_errors }}</p>
+      {%- endif -%}
+    {% endform %}
   </div>
+
+  {%- comment -%}── Link Columns (s8 ftr-cols) — reference lines 1725-1729 ──{%- endcomment -%}
+  <div class="s8 ftr-cols">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'link_list' -%}
+        <div {{ block.shopify_attributes }}>
+          <p class="eyebrow">{{ block.settings.heading | escape }}</p>
+          {%- if block.settings.menu != blank -%}
+            {%- for link in linklists[block.settings.menu].links -%}
+              <a href="{{ link.url }}" class="flink">{{ link.title }}</a>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
 </div>
+
+{%- comment -%}── Bottom Bar — reference line 1731 ──{%- endcomment -%}
+<div class="ftr-bottom">
+  <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+
+  {%- if section.settings.show_payment_icons -%}
+    <span class="ftr-payments">
+      {%- for type in shop.enabled_payment_types -%}
+        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+      {%- endfor -%}
+    </span>
+  {%- endif -%}
+
+  <span class="ftr-policies">
+    {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+      {% form 'localization', id: 'FooterCountryForm' %}
+        <select name="country_code" class="ftr-select" onchange="this.form.submit()" aria-label="Country/region">
+          {%- for country in localization.available_countries -%}
+            <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+              {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+            </option>
+          {%- endfor -%}
+        </select>
+      {% endform %}
+    {%- endif -%}
+
+    {%- for policy in shop.policies -%}
+      {%- if policy -%}
+        <a href="{{ policy.url }}">{{ policy.title }}</a>
+        {%- unless forloop.last -%}<span style="color:var(--muted)"> · </span>{%- endunless -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </span>
+</div>
+
+</div>
+</footer>
 
 {% schema %}
 {
@@ -285,7 +403,14 @@
       "type": "text",
       "id": "brand_bio",
       "label": "Brand statement",
-      "default": "Custom teamwear for grassroots clubs. Built for the full 90 minutes."
+      "default": "Custom teamwear for grassroots clubs."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social icons",
+      "default": true,
+      "info": "Links are set in Theme Settings > Social media."
     },
     {
       "type": "header",
@@ -294,14 +419,24 @@
     {
       "type": "text",
       "id": "newsletter_title",
-      "label": "Newsletter heading",
-      "default": "Match Alerts"
+      "label": "Newsletter label",
+      "default": "Get 10% off your first order"
     },
     {
-      "type": "text",
-      "id": "newsletter_text",
-      "label": "Newsletter text",
-      "default": "Get 10% off your first order when you sign up."
+      "type": "header",
+      "content": "Utility bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "label": "Enable country/region selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
     }
   ],
   "blocks": [
