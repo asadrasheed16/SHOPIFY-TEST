@@ -592,6 +592,29 @@
         "rating_score": "4.9",
         "total_reviews": "from 1,200+ Verified Athletes"
       }
+    },
+    "final_cta_club": {
+      "type": "final-cta-club",
+      "blocks": {
+        "perk_1": { "type": "perk_item", "settings": { "text": "10% Off First Order" } },
+        "perk_2": { "type": "perk_item", "settings": { "text": "VIP Drop Access" } },
+        "perk_3": { "type": "perk_item", "settings": { "text": "Athlete Tested" } },
+        "perk_4": { "type": "perk_item", "settings": { "text": "Zero Spam" } }
+      },
+      "block_order": ["perk_1", "perk_2", "perk_3", "perk_4"],
+      "settings": {}
+    },
+    "faq_accordion": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_1": { "type": "faq_item", "settings": { "question": "How do I care for my latex goalkeeper gloves?", "category": "Gear Care" } },
+        "faq_2": { "type": "faq_item", "settings": { "question": "What is the turnaround time for custom kits?", "category": "Shipping & Delivery" } },
+        "faq_3": { "type": "faq_item", "settings": { "question": "What is the optimal PSI for match footballs?", "category": "Gear Care" } },
+        "faq_4": { "type": "faq_item", "settings": { "question": "How do your rugby jerseys fit compared to high street brands?", "category": "Sizing & Fit" } },
+        "faq_5": { "type": "faq_item", "settings": { "question": "Can I order replacements for new squad members later?", "category": "Orders & Returns" } }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
+      "settings": {}
     }
   },
   "order": [
@@ -603,6 +626,8 @@
     "featured_products_carousel",
     "featured_collection",
     "community_grid_JTpDkJ",
-    "reviews_wall_ErNXPU"
+    "reviews_wall_ErNXPU",
+    "final_cta_club",
+    "faq_accordion"
   ]
 }
