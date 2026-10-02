@@ -1,401 +1,135 @@
 {%- comment -%}
   sections/footer.liquid
   Nineties90 — Direction C "Clean Sport · Motion"
-  Refactored Global Footer matching reference
+  Exact HTML Match from Reference
 {%- endcomment -%}
 
-{%- liquid
-  assign bg     = section.settings.color_background | default: '#0E1B33'
-  assign ink    = section.settings.color_text | default: '#FFFFFF'
-  assign muted  = section.settings.color_muted | default: '#8E9DB4'
-  assign line   = section.settings.color_line | default: 'rgba(255,255,255,0.15)'
-  assign accent = section.settings.color_accent | default: '#D4FF3A'
-  assign pt     = section.settings.padding_top | default: 80
-  assign pb     = section.settings.padding_bottom | default: 32
--%}
-
-{%- style -%}
-  #shopify-section-{{ section.id }} {
-    --nn-bg:      {{ bg }};
-    --nn-ink:     {{ ink }};
-    --nn-muted:   {{ muted }};
-    --nn-accent:  {{ accent }};
-    --nn-line:    {{ line }};
-  }
-
-  .n90-ftr {
-    background: var(--nn-bg);
-    color: var(--nn-ink);
-    border-top: 1px solid var(--nn-line);
-    padding: {{ pt }}px 0 {{ pb }}px;
-  }
-  @media screen and (max-width: 749px) {
-    .n90-ftr { padding: {{ pt | at_most: 48 }}px 0 {{ pb | at_most: 96 }}px; }
-  }
-
-  .n90-ftr__wrap {
-    padding: 0 64px;
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-  @media screen and (max-width: 749px) {
-    .n90-ftr__wrap { padding: 0 16px; }
-  }
-
-  .n90-ftr__cols {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: 24px;
-  }
-  @media screen and (max-width: 749px) {
-    .n90-ftr__cols { display: flex; flex-direction: column; gap: 32px; }
-  }
-
-  .n90-ftr__s4 { grid-column: span 4; }
-  .n90-ftr__s8 { grid-column: span 8; }
-
-  .n90-ftr__nav-cols {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-    padding-left: 64px;
-  }
-  @media screen and (max-width: 749px) {
-    .n90-ftr__nav-cols {
-      grid-template-columns: 1fr 1fr;
-      gap: 28px 16px;
-      padding-left: 0;
-    }
-  }
-
-  /* Brand Column Typography */
-  .n90-ftr__logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--nn-ink);
-    display: inline-block;
-    text-decoration: none;
-  }
-  .n90-ftr__muted-text {
-    font-size: 14px;
-    color: var(--nn-muted);
-    margin: 8px 0 0 0;
-  }
-
-  /* Newsletter Field */
-  .n90-ftr__field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 24px;
-  }
-  .n90-ftr__label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--nn-ink);
-  }
-  .n90-ftr__sub-row {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  @media screen and (max-width: 480px) {
-    .n90-ftr__sub-row { flex-direction: column; }
-  }
-
-  .n90-ftr__input {
-    min-height: 44px;
-    padding: 0 16px;
-    border: 1px solid var(--nn-line);
-    background: transparent;
-    color: var(--nn-ink);
-    border-radius: 4px;
-    width: 100%;
-    font-size: 16px;
-    font-family: 'Barlow', sans-serif;
-  }
-  .n90-ftr__input:focus {
-    outline: none;
-    border-color: var(--nn-accent);
-  }
-  .n90-ftr__input::placeholder { color: var(--nn-muted); }
-
-  .n90-ftr__btn-line {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 44px;
-    padding: 0 18px;
-    border: 1px solid var(--nn-line);
-    background: transparent;
-    color: var(--nn-ink);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    border-radius: 4px;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-  }
-  .n90-ftr__btn-line:hover {
-    background: var(--nn-accent);
-    color: #0E1B33;
-    border-color: var(--nn-accent);
-  }
-  
-  .n90-ftr__msg { font-size: 13px; margin-top: 4px; }
-
-  /* Social Icons */
-  .n90-ftr__social {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-    list-style: none;
-    padding: 0;
-  }
-  .n90-ftr__social a {
-    color: var(--nn-muted);
-    transition: color 0.2s;
-    display: flex;
-  }
-  .n90-ftr__social a:hover { color: var(--nn-accent); }
-  .n90-ftr__social svg { width: 20px; height: 20px; fill: currentColor; }
-
-  /* Navigation Columns */
-  .n90-ftr__eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--nn-ink);
-    margin: 0 0 14px 0;
-  }
-  .n90-ftr__flink {
-    display: flex;
-    align-items: center;
-    min-height: 36px;
-    font-size: 14px;
-    color: var(--nn-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .n90-ftr__flink:hover { color: var(--nn-ink); }
-
-  /* Sub-Footer */
-  .n90-ftr__bottom {
-    border-top: 1px solid var(--nn-line);
-    margin-top: 64px;
-    padding-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    font-size: 13px;
-    color: var(--nn-muted);
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  @media screen and (max-width: 749px) {
-    .n90-ftr__bottom {
-      margin-top: 40px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-    }
-  }
-
-  .n90-ftr__localization { display: flex; gap: 16px; flex-wrap: wrap; }
-  .n90-ftr__select {
-    background: transparent;
-    border: 1px solid var(--nn-line);
-    color: var(--nn-ink);
-    padding: 6px 28px 6px 12px;
-    border-radius: 4px;
-    font-size: 13px;
-    appearance: none;
-  }
-  .n90-ftr__select-wrap { position: relative; }
-  .n90-ftr__select-wrap svg {
-    position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; pointer-events: none;
-  }
-
-  .n90-ftr__payments { display: flex; gap: 6px; flex-wrap: wrap; }
-  .n90-ftr__payments svg { width: 34px; height: 22px; }
-
-  .n90-ftr__legal { display: flex; gap: 12px; flex-wrap: wrap; }
-  .n90-ftr__legal a { color: var(--nn-muted); text-decoration: none; transition: color 0.2s; }
-  .n90-ftr__legal a:hover { color: var(--nn-ink); }
-{%- endstyle -%}
-
-<footer class="n90-ftr" data-section="Footer">
-  <div class="n90-ftr__wrap">
-    
-    <div class="n90-ftr__cols">
-      {%- comment -%} Left Column (Brand + Newsletter) {%- endcomment -%}
-      <div class="n90-ftr__s4">
-        <a href="{{ routes.root_url }}" class="n90-ftr__logo">
-          {%- if section.settings.logo != blank -%}
-            <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name | escape }}" style="max-width: {{ section.settings.logo_width }}px; height: auto;">
-          {%- else -%}
-            {{ shop.name }}
-          {%- endif -%}
-        </a>
-        <p class="n90-ftr__muted-text">{{ section.settings.brand_bio | escape }}</p>
+<footer class="ftr" data-section="Footer" id="shopify-section-{{ section.id }}">
+  <div class="wrap">
+    <div class="cols">
+      
+      {%- comment -%}── Column 1: Brand & Newsletter ──{%- endcomment -%}
+      <div class="s4">
+        {%- if section.settings.logo != blank -%}
+          <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name | escape }}" class="logo-img" style="max-width: {{ section.settings.logo_width }}px; height: auto;">
+        {%- else -%}
+          <span class="logo">{{ shop.name }}</span>
+        {%- endif -%}
         
-        <div class="n90-ftr__field">
-          <label class="n90-ftr__label" for="n90-nl-input">{{ section.settings.newsletter_title | escape }}</label>
-          
-          {% form 'customer', class: 'n90-ftr__form' %}
+        <p class="small muted mt8">{{ section.settings.brand_bio | escape }}</p>
+
+        {%- if section.settings.show_social -%}
+          <div class="mt16" style="display: flex; gap: 12px; color: var(--nn-ink);">
+            {%- if settings.social_instagram_link != blank -%}<a href="{{ settings.social_instagram_link }}" aria-label="Instagram">{% render 'icon-instagram' %}</a>{%- endif -%}
+            {%- if settings.social_tiktok_link != blank -%}<a href="{{ settings.social_tiktok_link }}" aria-label="TikTok">{% render 'icon-tiktok' %}</a>{%- endif -%}
+            {%- if settings.social_youtube_link != blank -%}<a href="{{ settings.social_youtube_link }}" aria-label="YouTube">{% render 'icon-youtube' %}</a>{%- endif -%}
+            {%- if settings.social_twitter_link != blank -%}<a href="{{ settings.social_twitter_link }}" aria-label="X (Twitter)">{% render 'icon-twitter' %}</a>{%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {% form 'customer', class: 'mt24' %}
+          <div class="field">
+            <label class="label" for="nn-nl-{{ section.id }}">{{ section.settings.newsletter_title | escape }}</label>
             <input type="hidden" name="contact[tags]" value="newsletter">
-            <div class="n90-ftr__sub-row">
-              <input 
-                id="n90-nl-input" 
-                class="n90-ftr__input" 
-                type="email" 
-                name="contact[email]" 
-                placeholder="Email address" 
-                required
-                aria-label="Email address"
-              >
-              <button type="submit" class="n90-ftr__btn-line">{{ section.settings.newsletter_btn | escape }}</button>
+            <div class="sub-row">
+              <input id="nn-nl-{{ section.id }}" class="input" type="email" name="contact[email]" placeholder="Email address" style="min-height: 44px" required>
+              <button type="submit" class="btn-line btn-sm">Sign up</button>
             </div>
             {%- if form.posted_successfully? -%}
-              <div class="n90-ftr__msg" style="color:var(--nn-accent);">Subscribed successfully!</div>
+              <p class="small mt8" style="color: var(--nn-accent);">Thanks for subscribing!</p>
             {%- elsif form.errors -%}
-              <div class="n90-ftr__msg" style="color:#FF4D4D;">{{ form.errors | default_errors }}</div>
+              <p class="small mt8" style="color: #FF4D4D;">{{ form.errors | default_errors }}</p>
             {%- endif -%}
-          {% endform %}
-        </div>
-        
-        {%- if section.settings.show_social -%}
-          <ul class="n90-ftr__social">
-            {%- if settings.social_instagram_link != blank -%}<li><a href="{{ settings.social_instagram_link }}" aria-label="Instagram">{% render 'icon-instagram' %}</a></li>{%- endif -%}
-            {%- if settings.social_tiktok_link != blank -%}<li><a href="{{ settings.social_tiktok_link }}" aria-label="TikTok">{% render 'icon-tiktok' %}</a></li>{%- endif -%}
-            {%- if settings.social_youtube_link != blank -%}<li><a href="{{ settings.social_youtube_link }}" aria-label="YouTube">{% render 'icon-youtube' %}</a></li>{%- endif -%}
-            {%- if settings.social_twitter_link != blank -%}<li><a href="{{ settings.social_twitter_link }}" aria-label="X (Twitter)">{% render 'icon-twitter' %}</a></li>{%- endif -%}
-          </ul>
-        {%- endif -%}
+          </div>
+        {% endform %}
       </div>
-      
-      {%- comment -%} Right Columns (Navigation) {%- endcomment -%}
-      <div class="n90-ftr__s8 n90-ftr__nav-cols">
+
+      {%- comment -%}── Column 2: Navigation Lists ──{%- endcomment -%}
+      <div class="s8 ftr-cols">
         {%- for block in section.blocks -%}
           {%- if block.type == 'link_list' -%}
             <div {{ block.shopify_attributes }}>
-              <p class="n90-ftr__eyebrow">{{ block.settings.heading | escape }}</p>
+              <p class="eyebrow">{{ block.settings.heading | escape }}</p>
               {%- if block.settings.menu != blank -%}
-                {%- for link in block.settings.menu.links -%}
-                  <a href="{{ link.url }}" class="n90-ftr__flink">{{ link.title }}</a>
+                {%- for link in linklists[block.settings.menu].links -%}
+                  <a href="{{ link.url }}" class="flink" style="display:block; text-decoration:none;">{{ link.title }}</a>
                 {%- endfor -%}
               {%- endif -%}
             </div>
           {%- endif -%}
         {%- endfor -%}
       </div>
-    </div>
-
-    {%- comment -%} Bottom Utility Bar {%- endcomment -%}
-    <div class="n90-ftr__bottom">
       
-      {%- comment -%} Localization & Copyright {%- endcomment -%}
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <div class="n90-ftr__localization">
-          {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-            <div class="n90-ftr__select-wrap">
-              {% form 'localization', id: 'FooterCountryForm' %}
-                <select name="country_code" class="n90-ftr__select" onchange="this.form.submit()">
-                  {%- for country in localization.available_countries -%}
-                    <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected{% endif %}>
-                      {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
-                    </option>
-                  {%- endfor -%}
-                </select>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-              {% endform %}
-            </div>
-          {%- endif -%}
-          {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-            <div class="n90-ftr__select-wrap">
-              {% form 'localization', id: 'FooterLanguageForm' %}
-                <select name="locale_code" class="n90-ftr__select" onchange="this.form.submit()">
-                  {%- for language in localization.available_languages -%}
-                    <option value="{{ language.iso_code }}" {%- if language.iso_code == localization.language.iso_code %} selected{% endif %}>
-                      {{ language.endonym_name | capitalize }}
-                    </option>
-                  {%- endfor -%}
-                </select>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-              {% endform %}
-            </div>
-          {%- endif -%}
-        </div>
-        <span>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</span>
-      </div>
-
-      {%- comment -%} Legal Links {%- endcomment -%}
-      {%- if shop.policies != blank -%}
-        <div class="n90-ftr__legal">
-          {%- for policy in shop.policies -%}
-            <a href="{{ policy.url }}">{{ policy.title }}</a>
-            {%- unless forloop.last -%}<span>&middot;</span>{%- endunless -%}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
-      {%- comment -%} Payment Icons {%- endcomment -%}
-      {%- if section.settings.show_payment_icons -%}
-        <div class="n90-ftr__payments">
-          {%- for type in shop.enabled_payment_types -%}
-            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
     </div>
+
+    {%- comment -%}── Bottom Utility Bar ──{%- endcomment -%}
+    <div class="ftr-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+      
+      {%- if section.settings.show_payment_icons -%}
+        <span style="display: flex; gap: 8px;">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag: class: 'icon icon--full-color', style: 'width: 32px; height: auto;' }}
+          {%- endfor -%}
+        </span>
+      {%- endif -%}
+      
+      <span style="display: flex; gap: 16px; align-items: center;">
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          {% form 'localization', id: 'FooterCountryForm', style: 'display:inline-block;' %}
+            <select name="country_code" onchange="this.form.submit()" style="background:transparent; color:inherit; border:none; outline:none; font-family:inherit; font-size:inherit; cursor:pointer;">
+              {%- for country in localization.available_countries -%}
+                <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected{% endif %} style="color:#000;">
+                  {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+                </option>
+              {%- endfor -%}
+            </select>
+          {% endform %}
+        {%- endif -%}
+
+        {%- if shop.policies != blank -%}
+          {%- for policy in shop.policies -%}
+            <a href="{{ policy.url }}" style="color: inherit; text-decoration: none;">{{ policy.title }}</a>
+            {%- unless forloop.last -%} &middot; {%- endunless -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </span>
+    </div>
+
   </div>
 </footer>
 
 {% schema %}
 {
   "name": "Footer",
-  "max_blocks": 4,
+  "tag": "section",
   "settings": [
-    { "type": "header", "content": "Colors" },
-    { "type": "color", "id": "color_background", "label": "Background", "default": "#0E1B33" },
-    { "type": "color", "id": "color_text", "label": "Text", "default": "#FFFFFF" },
-    { "type": "color", "id": "color_muted", "label": "Muted Text", "default": "#8E9DB4" },
-    { "type": "color", "id": "color_accent", "label": "Accent", "default": "#D4FF3A" },
-    { "type": "color", "id": "color_line", "label": "Lines", "default": "rgba(255,255,255,0.15)" },
-    { "type": "header", "content": "Brand" },
+    {
+      "type": "header",
+      "content": "Brand Info"
+    },
     { "type": "image_picker", "id": "logo", "label": "Logo image" },
     { "type": "range", "id": "logo_width", "label": "Logo width", "min": 50, "max": 300, "step": 10, "unit": "px", "default": 140 },
-    { "type": "text", "id": "brand_bio", "label": "Brand bio", "default": "Custom teamwear for grassroots clubs." },
+    { "type": "text", "id": "brand_bio", "label": "Brand Ethos", "default": "Custom teamwear for grassroots clubs. Built for the full 90 minutes." },
     { "type": "checkbox", "id": "show_social", "label": "Show social icons", "default": true },
-    { "type": "header", "content": "Newsletter" },
-    { "type": "text", "id": "newsletter_title", "label": "Title", "default": "Get 10% off your first order" },
-    { "type": "text", "id": "newsletter_btn", "label": "Button label", "default": "Sign up" },
-    { "type": "header", "content": "Utility Bar" },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    { "type": "text", "id": "newsletter_title", "label": "Newsletter Title", "default": "Get 10% off your first order" },
+    {
+      "type": "header",
+      "content": "Utility Bar"
+    },
     { "type": "checkbox", "id": "enable_country_selector", "label": "Enable country/region selector", "default": true },
-    { "type": "checkbox", "id": "enable_language_selector", "label": "Enable language selector", "default": true },
-    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true },
-    { "type": "header", "content": "Spacing" },
-    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
-    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 32 }
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
   ],
   "blocks": [
     {
       "type": "link_list",
       "name": "Menu Column",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Links" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Quick links" },
         { "type": "link_list", "id": "menu", "label": "Menu" }
       ]
     }
