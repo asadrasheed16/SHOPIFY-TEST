@@ -1,0 +1,59 @@
+<section class="section soft-band"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">{{ section.settings.eyebrow | escape }}</span><h2 class="d h2">{{ section.settings.heading | escape }}</h2></div><p class="muted">{{ section.settings.text | escape }}</p></div><div class="steps-grid">{% for block in section.blocks %}<div class="process-step" {{ block.shopify_attributes }}><span class="step-number">0{{ forloop.index }}</span><h3 class="d h3">{{ block.settings.title | escape }}</h3><p class="muted">{{ block.settings.text | escape }}</p></div>{% endfor %}</div></div></section>
+
+{% schema %}
+{
+  "name": "How it works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Your team. Your identity."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From idea to match day"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Introduction",
+      "default": "A simple route to a kit your whole club can wear with pride."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Tell us about your team"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Choose your sport, team colours and what you need."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "How it works",
+      "blocks": [
+        {
+          "type": "step"
+        }
+      ]
+    }
+  ],
+  "class": "n90-clean"
+}
+{% endschema %}

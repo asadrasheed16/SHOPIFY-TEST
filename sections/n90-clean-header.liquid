@@ -1,0 +1,391 @@
+{{ 'component-search.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{% assign quote_url = pages['kit-builder'].url %}{% if quote_url == blank %}{% assign quote_url = routes.root_url | append: '#TeamQuote' %}{% endif %}
+{% assign clubs_url = pages['club-shops'].url | default: routes.collections_url %}
+{% for existing_link in section.settings.menu.links %}{% assign existing_title = existing_link.title | handleize %}{% if existing_title == 'club-shops' %}{% assign clubs_url = existing_link.url %}{% endif %}{% endfor %}
+{% assign header_logo = settings.logo | default: section.settings.logo %}{% capture wordmark %}{% if header_logo != blank %}{{ header_logo | image_url: width: 440 | image_tag: widths: '120,180,240,360,440', width: section.settings.logo_width, alt: shop.name }}{% else %}{{ section.settings.brand_name | escape }}{% endif %}{% endcapture %}
+<header class="site-header ref-header" data-header>
+ <div class="ref-header-inner">
+  <details class="ref-mobile-navigation" data-mobile-navigation><summary class="ref-icon-button" aria-label="Open menu">{% render 'n90-clean-icon', name: 'menu' %}</summary>
+  <div class="ref-mobile-backdrop" data-mobile-close></div><div class="ref-mobile-panel" role="dialog" aria-modal="true" aria-label="Menu" tabindex="-1">
+   <div class="ref-mobile-head"><a class="ref-logo" href="{{ routes.root_url }}">{{ wordmark }}</a><button class="ref-icon-button" type="button" data-mobile-close aria-label="Close menu">{% render 'n90-clean-icon', name: 'close' %}</button></div>
+   <nav class="ref-mobile-body" aria-label="Mobile navigation">
+    {% if section.settings.navigation_style == 'custom' and section.settings.menu != blank %}{% for link in section.settings.menu.links %}{% if link.links != blank %}<details class="ref-mobile-group"><summary>{{ link.title | escape }}<span aria-hidden="true"></span></summary><div class="ref-mobile-sub"><a class="ref-group-link" href="{{ link.url }}">View all</a>{% for child in link.links %}<a class="ref-group-link" href="{{ child.url }}">{{ child.title | escape }}</a>{% endfor %}</div></details>{% else %}<a class="ref-mobile-sport" href="{{ link.url }}">{{ link.title | escape }}</a>{% endif %}{% endfor %}
+    {% else %}<p class="eyebrow">Shop by sport</p>{% for block in section.blocks %}{% if block.type == 'sport' %}{% render 'n90-clean-header-sport', block: block, section: section, mobile: true, quote_url: quote_url %}{% endif %}{% endfor %}<p class="eyebrow ref-mobile-shop-title">Shop</p>{% render 'n90-clean-header-shop-groups', section: section, mobile: true %}{% endif %}
+    <div class="ref-mobile-extra"><a href="{{ clubs_url }}">Club Shops<span aria-hidden="true">â€º</span></a>{% if shop.customer_accounts_enabled %}<a href="{{ routes.account_url }}">Account<span aria-hidden="true">â€º</span></a>{% endif %}</div>
+   </nav>
+   <div class="ref-mobile-footer"><a class="btn" href="{{ quote_url }}">Free quote</a>{% if section.settings.whatsapp_url != blank %}<a class="tlink" href="{{ section.settings.whatsapp_url }}">Chat on WhatsApp</a>{% else %}<a class="tlink" href="{{ quote_url }}">Talk to our team</a>{% endif %}</div>
+  </div></details>
+  <a class="ref-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }} home">{{ wordmark }}</a>
+  <nav class="ref-desktop-navigation" aria-label="Main navigation">
+   {% if section.settings.navigation_style == 'custom' and section.settings.menu != blank %}
+    {% for link in section.settings.menu.links %}<div class="ref-nav-item"><a class="ref-nav-link" href="{{ link.url }}"{% if link.links != blank %} data-nav-trigger aria-expanded="false" aria-controls="Menu-{{ section.id }}-{{ forloop.index }}"{% endif %}>{{ link.title | escape }}</a>{% if link.links != blank %}<div class="ref-mega" id="Menu-{{ section.id }}-{{ forloop.index }}" data-nav-panel><div class="ref-mega-inner"><div class="ref-shop-groups">{% for child in link.links %}<div><a class="ref-group-title" href="{{ child.url }}">{{ child.title | escape }}</a>{% for grandchild in child.links %}<a class="ref-group-link" href="{{ grandchild.url }}">{{ grandchild.title | escape }}</a>{% endfor %}</div>{% endfor %}</div></div></div>{% endif %}</div>{% endfor %}
+   {% else %}
+    {% for block in section.blocks %}{% if block.type == 'sport' %}{% render 'n90-clean-header-sport', block: block, section: section, quote_url: quote_url %}{% endif %}{% endfor %}
+    <div class="ref-nav-item"><a class="ref-nav-link" href="{{ routes.all_products_collection_url }}" data-nav-trigger aria-expanded="false" aria-controls="ShopMenu-{{ section.id }}">Shop</a><div class="ref-mega" id="ShopMenu-{{ section.id }}" aria-label="Shop menu" data-nav-panel><div class="ref-mega-inner"><div class="ref-shop-groups">{% render 'n90-clean-header-shop-groups', section: section %}</div><div class="ref-shop-feature"><div class="ref-mega-media">{% if section.settings.shop_image != blank %}{{ section.settings.shop_image | image_url: width: 900 | image_tag: loading: 'lazy' }}{% else %}<span class="ref-photo-label">{% render 'n90-clean-header-camera' %}Photo: Urban Camo training top, styled</span>{% endif %}</div><p class="small"><strong>Urban Camo</strong></p><a class="tlink" href="{{ section.settings.look_link | default: routes.all_products_collection_url }}">Shop the Look</a></div></div></div></div>
+    <a class="ref-nav-link" href="{{ clubs_url }}">Club Shops</a>
+   {% endif %}
+  </nav>
+  <div class="ref-header-actions">      <div class="desktop-localization-wrapper">
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form class="small-hide medium-hide" data-prevent-hide>
+            {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {% endif %}
+
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <localization-form class="small-hide medium-hide" data-prevent-hide>
+            {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+                {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+      </div>
+{% render 'header-search', input_id: 'Search-In-Modal' %}
+   {%- if shop.customer_accounts_enabled -%}
+        <shopify-account
+          menu="{{ settings.customer_account_menu | default: 'customer-account-main-menu' }}"
+          class="header__icon header__icon--account link focus-inset"
+        >
+          <span slot="signed-out-avatar" class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+          <span slot="signed-out-avatar" class="visually-hidden">{{ 'customer.log_in' | t }}</span>
+        </shopify-account>
+      {%- endif -%}
+         <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+        {% if cart == empty %}
+          <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+        {% else %}
+          <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+        {% endif %}
+        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+        {%- if cart != empty -%}
+          <div class="cart-count-bubble">
+            {%- if cart.item_count < 100 -%}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            {%- endif -%}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        {%- endif -%}
+      </a>{% for block in section.blocks %}{% if block.type == '@app' %}{% render block %}{% endif %}{% endfor %}<a class="btn-line ref-header-quote" href="{{ quote_url }}">Free quote</a>
+  </div>
+ </div>
+ <div class="ref-nav-shade" data-nav-shade hidden></div>
+</header>
+
+{% if settings.cart_type == 'notification' %}
+  {% render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop %}
+{% endif %}
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "NINETIES90"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 100,
+      "max": 220,
+      "step": 10,
+      "default": 170,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "navigation_style",
+      "label": "Navigation layout",
+      "default": "reference",
+      "options": [
+        {
+          "value": "reference",
+          "label": "Original sport navigation"
+        },
+        {
+          "value": "custom",
+          "label": "Custom Shopify menu"
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Custom main menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_menu",
+      "label": "Shop mega-menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "shop_image",
+      "label": "Shop feature image"
+    },
+    {
+      "type": "url",
+      "id": "look_link",
+      "label": "Shop the look link"
+    },
+    {
+      "type": "url",
+      "id": "whatsapp_url",
+      "label": "WhatsApp link"
+    },
+    {
+      "type": "header",
+      "content": "Sport menu details"
+    },
+    {
+      "type": "text",
+      "id": "minimum",
+      "label": "Minimum order",
+      "default": "From 10 pieces"
+    },
+    {
+      "type": "text",
+      "id": "turnaround",
+      "label": "Turnaround",
+      "default": "3â€“4 week turnaround"
+    },
+    {
+      "type": "text",
+      "id": "design",
+      "label": "Design offer",
+      "default": "Free design and quote"
+    },
+    {
+      "type": "text",
+      "id": "club_setup",
+      "label": "Club shop offer",
+      "default": "Free club shop setup"
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "t:sections.header.settings.logo_position.options__2.label"
+        },
+        {
+          "value": "top-center",
+          "label": "t:sections.header.settings.logo_position.options__3.label"
+        },
+        {
+          "value": "middle-left",
+          "label": "t:sections.header.settings.logo_position.options__1.label"
+        },
+        {
+          "value": "middle-center",
+          "label": "t:sections.header.settings.logo_position.options__4.label"
+        }
+      ],
+      "default": "middle-left",
+      "label": "t:sections.header.settings.logo_position.label",
+      "info": "t:sections.header.settings.logo_help.content"
+    },
+    {
+      "type": "select",
+      "id": "mobile_logo_position",
+      "options": [
+        {
+          "value": "center",
+          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.header.settings.mobile_logo_position.label"
+    },
+    {
+      "type": "select",
+      "id": "menu_type_desktop",
+      "options": [
+        {
+          "value": "dropdown",
+          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
+        },
+        {
+          "value": "mega",
+          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
+        }
+      ],
+      "default": "dropdown",
+      "label": "t:sections.header.settings.menu_type_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
+        },
+        {
+          "value": "on-scroll-up",
+          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
+        },
+        {
+          "value": "always",
+          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
+        },
+        {
+          "value": "reduce-logo-size",
+          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
+        }
+      ],
+      "default": "on-scroll-up",
+      "label": "t:sections.header.settings.sticky_header_type.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "menu_color_scheme",
+      "label": "t:sections.header.settings.menu_color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "t:sections.header.settings.enable_country_selector.label",
+      "info": "t:sections.header.settings.enable_country_selector.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.header.settings.enable_language_selector.label",
+      "info": "t:sections.header.settings.enable_language_selector.info"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.header.settings.margin_bottom.label",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sport",
+      "name": "Sport",
+      "settings": [
+        {
+          "type": "select",
+          "id": "sport",
+          "label": "Sport",
+          "default": "football",
+          "options": [
+            {
+              "value": "football",
+              "label": "Football"
+            },
+            {
+              "value": "rugby",
+              "label": "Rugby"
+            },
+            {
+              "value": "cricket",
+              "label": "Cricket"
+            },
+            {
+              "value": "golf",
+              "label": "Golf"
+            },
+            {
+              "value": "darts",
+              "label": "Darts"
+            },
+            {
+              "value": "bowls",
+              "label": "Bowls"
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Sport collection"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Sport submenu"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Featured image"
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "class": "n90-clean section-header"
+}
+{% endschema %}

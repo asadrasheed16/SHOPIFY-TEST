@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-labelledby="title"><title id="title">Nineties90 kit design</title><svg x="0" y="0" width="400" height="500" viewBox="0 0 400 500">
+<g transform="translate(0,0)">
+<g>
+<path d="M140 410 L260 410 L270 478 L212 478 L200 446 L188 478 L130 478 Z" fill="#FFFFFF" stroke="#0E1B33" stroke-width="2" stroke-linejoin="round" />
+<rect x="140" y="410" width="120" height="9" fill="#0E1B33" stroke="#0E1B33" stroke-width="2" />
+</g>
+<path d="M150 96 L178 84 Q200 100 222 84 L250 96 L316 132 L294 196 L266 184 L266 392 Q200 400 134 392 L134 184 L106 196 L84 132 Z" fill="#FFFFFF" stroke="#0E1B33" stroke-width="2" stroke-linejoin="round" />
+<polygon points="135,206 200,262 265,206 265,238 200,294 135,238" fill="#0E1B33" />
+<g fill="#0E1B33" stroke="#0E1B33" stroke-width="1.5">
+<polygon points="84,132 106,196 115,192 93,128" />
+<polygon points="316,132 294,196 285,192 307,128" />
+</g>
+<path d="M178 84 Q200 112 222 84" fill="none" stroke="#0E1B33" stroke-width="7" stroke-linecap="round" />
+<path d="M178 84 Q200 112 222 84" fill="none" stroke="#0E1B33" stroke-width="1.5" />
+<circle cx="236" cy="150" r="11" fill="none" stroke="#0E1B33" stroke-width="2.5" />
+<path d="M134 392 Q200 400 266 392" fill="none" stroke="#0E1B33" stroke-width="2" />
+</g>
+</svg></svg>

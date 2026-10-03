@@ -1,0 +1,57 @@
+{% if section.blocks.size > 0 %}<section class="section dark-band"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">{{ section.settings.eyebrow | escape }}</span><h2 class="d h2">{{ section.settings.heading | escape }}</h2></div></div><div class="reels-track">{% for block in section.blocks %}<article class="reel" {{ block.shopify_attributes }}>{% if block.settings.video != blank %}{{ block.settings.video | video_tag: image_size: '600x', controls: true, preload: 'none', loop: false }}{% elsif block.settings.image != blank %}{{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}{% else %}<div class="reel-placeholder">{% render 'n90-clean-icon', name: 'shirt' %}</div>{% endif %}<h3 class="d h3">{{ block.settings.heading | escape }}</h3><p>{{ block.settings.caption | escape }}</p></article>{% endfor %}</div></div></section>{% endif %}
+
+{% schema %}
+{
+  "name": "On the pitch videos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The club comes first"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "On the pitch"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video or image",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify hosted video"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Match day"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "On the pitch videos"
+    }
+  ],
+  "class": "n90-clean"
+}
+{% endschema %}

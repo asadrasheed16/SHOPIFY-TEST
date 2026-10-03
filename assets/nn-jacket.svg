@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-labelledby="title"><title id="title">Nineties90 jacket design</title><rect width="400" height="500" fill="#EEF1F5"/><svg x="0" y="0" width="400" height="500" viewBox="0 0 400 500">
+<g transform="translate(0,36)">
+<path d="M150 96 L178 84 Q200 100 222 84 L250 96 L300 118 Q318 126 322 150 L338 330 L304 336 L286 196 L266 184 L266 392 Q200 400 134 392 L134 184 L114 196 L96 336 L62 330 L78 150 Q82 126 100 118 Z" fill="#0E1B33" stroke="#0E1B33" stroke-width="2" stroke-linejoin="round" />
+<g fill="#FFFFFF" stroke="#0E1B33" stroke-width="1.5">
+<polygon points="96,336 62,330 63,318 97,324" />
+<polygon points="304,336 338,330 337,318 303,324" />
+</g>
+<path d="M178 84 Q200 112 222 84" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+<path d="M178 84 Q200 112 222 84" fill="none" stroke="#0E1B33" stroke-width="1.5" />
+<line x1="200" y1="100" x2="200" y2="396" stroke="#FFFFFF" stroke-width="3" />
+<circle cx="236" cy="150" r="11" fill="none" stroke="#FFFFFF" stroke-width="2.5" />
+<path d="M134 392 Q200 400 266 392" fill="none" stroke="#0E1B33" stroke-width="2" />
+</g>
+</svg></svg>

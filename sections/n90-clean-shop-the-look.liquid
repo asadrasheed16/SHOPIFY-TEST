@@ -1,0 +1,59 @@
+{% assign look_collection = section.settings.collection | default: collections.all %}
+{% if look_collection.products_count > 0 or request.design_mode %}
+<section class="section"><div class="wrap"><div class="section-heading look-heading"><span class="eyebrow">{{ section.settings.eyebrow | escape }}</span><h2 class="d h2">{{ section.settings.heading | escape }}</h2><p class="muted">{{ section.settings.text | escape }}</p></div>
+<div class="look-layout"><div class="look-image">{% if section.settings.image != blank %}{{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400,700,1000,1200', sizes: '(max-width:749px) 100vw, 40vw' }}{% else %}<img src="{{ 'nn-camo.svg' | asset_url }}" width="800" height="640" alt="Nineties90 training top illustration" loading="lazy">{% endif %}<span class="media-corner">{{ section.settings.caption | escape }}</span></div><div class="look-products">{% for product in look_collection.products limit: 6 %}{% render 'n90-clean-product-card', product: product %}{% else %}<p class="editor-note">Choose a collection to display the products in this look.</p>{% endfor %}</div></div><div class="look-footer"><a class="btn-line" href="{{ look_collection.url | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} {% render 'n90-clean-icon', name: 'arrow' %}</a></div></div></section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Shop the look",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "On & off the pitch"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Wear it your way"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Your training-day lineup, all in one place."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Lifestyle image"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Image caption",
+      "default": "NINETIES90 / THE FULL LOOK"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop the full collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the look"
+    }
+  ],
+  "class": "n90-clean"
+}
+{% endschema %}

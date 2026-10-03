@@ -1,0 +1,55 @@
+{%- liquid
+ assign sport_id = block.settings.sport
+ assign sport_title = sport_id | capitalize
+ assign sport_collection = block.settings.collection | default: collections[sport_id]
+ assign kit_label = 'Match Kits'
+ assign training_label = 'Training Wear'
+ case sport_id
+  when 'football'
+   assign special_label = 'Footballs & Goalkeeper Gloves'
+   assign photo_label = 'Photo: first team in home kit, match day'
+  when 'rugby'
+   assign special_label = 'Rugby Balls & Protection'
+   assign photo_label = 'Photo: rugby team huddle in home kit'
+  when 'cricket'
+   assign special_label = 'Cricket Whites & Caps'
+   assign photo_label = 'Photo: batter walking out to bat'
+  when 'golf'
+   assign kit_label = 'Team Polos'
+   assign training_label = 'Midlayers'
+   assign special_label = 'Caps & Towels'
+   assign photo_label = 'Photo: golf team in matching polos'
+  when 'darts'
+   assign kit_label = 'Match Shirts'
+   assign training_label = 'Team Polos'
+   assign special_label = 'Names & Nicknames'
+   assign photo_label = 'Photo: darts player at the oche, back print'
+  when 'bowls'
+   assign kit_label = 'Match Shirts'
+   assign training_label = 'Team Polos'
+   assign special_label = 'Bowls Whites'
+   assign photo_label = 'Photo: bowls rink in matching shirts'
+ endcase
+-%}
+{% capture sport_url %}{% if sport_collection != blank %}{{ sport_collection.url }}{% else %}{{ routes.search_url }}?type=product&amp;q={{ sport_title | url_encode }}{% endif %}{% endcapture %}
+{% for existing_link in section.settings.menu.links %}{% assign existing_title = existing_link.title | handleize %}{% if existing_title == sport_id %}{% assign sport_url = existing_link.url %}{% endif %}{% endfor %}
+{% if mobile %}<a class="ref-mobile-sport" href="{{ sport_url }}">{{ sport_title }}<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+{% else %}
+<div class="ref-nav-item" {{ block.shopify_attributes }}>
+ <a class="ref-nav-link" href="{{ sport_url }}" data-nav-trigger aria-expanded="false" aria-controls="SportMenu-{{ section.id }}-{{ block.id }}">{{ sport_title }}</a>
+ <div class="ref-mega" id="SportMenu-{{ section.id }}-{{ block.id }}" aria-label="{{ sport_title }} menu" data-nav-panel>
+  <div class="ref-mega-inner"><div class="ref-mega-list"><p class="eyebrow">{{ sport_title }}</p>
+  {% if block.settings.menu != blank %}{% for link in block.settings.menu.links %}<a class="ref-mega-link" href="{{ link.url }}"><span>{{ link.title | escape }}</span></a>{% endfor %}
+  {% else %}
+   <a class="ref-mega-link" href="{{ routes.search_url }}?type=product&amp;q={{ sport_title | append: ' ' | append: kit_label | url_encode }}"><span>{{ kit_label }}</span><span class="ref-mega-hint">{{ section.settings.minimum | escape }}</span></a>
+   <a class="ref-mega-link" href="{{ routes.search_url }}?type=product&amp;q={{ sport_title | append: ' ' | append: training_label | url_encode }}"><span>{{ training_label }}</span></a>
+   <a class="ref-mega-link" href="{{ routes.search_url }}?type=product&amp;q={{ sport_title | append: ' Outerwear' | url_encode }}"><span>Outerwear</span><span class="ref-mega-hint">Track &amp; rain jackets</span></a>
+   <a class="ref-mega-link" href="{{ routes.search_url }}?type=product&amp;q={{ sport_title | append: ' Accessories' | url_encode }}"><span>Accessories</span></a>
+   <a class="ref-mega-link" href="{{ routes.search_url }}?type=product&amp;q={{ special_label | url_encode }}"><span>{{ special_label }}</span></a>
+   <a class="ref-mega-link" href="{{ routes.search_url }}?type=product&amp;q={{ sport_title | append: ' Bundles' | url_encode }}"><span>Bundles</span></a>
+  {% endif %}</div>
+  <div class="ref-mega-side"><p class="eyebrow">Custom {{ sport_title }} teamwear</p><ul><li>{{ section.settings.minimum | escape }}</li><li>{{ section.settings.turnaround | escape }}</li><li>{{ section.settings.design | escape }}</li><li>{{ section.settings.club_setup | escape }}</li></ul><a class="tlink" href="{{ sport_url }}">All {{ sport_title }}</a></div>
+  <div class="ref-mega-feature"><div class="ref-mega-media">{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '500,750,1000', sizes: '40vw' }}{% else %}<span class="ref-photo-label">{% render 'n90-clean-header-camera' %}{{ photo_label }}</span>{% endif %}</div><a class="tlink" href="{{ quote_url }}">Get a free kit mockup {% render 'n90-clean-icon', name: 'arrow' %}</a></div>
+  </div>
+ </div>
+</div>{% endif %}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" role="img" aria-labelledby="title"><title id="title">Nineties90 urban camo training top</title><rect width="800" height="640" fill="#EEF1F5"/><g fill="none" stroke="#0E1B33" stroke-width="2" opacity=".075"><rect x="40" y="40" width="720" height="560"/><path d="M400 40v560"/><circle cx="400" cy="320" r="86"/><circle cx="400" cy="320" r="4" fill="#0E1B33"/><path d="M40 174h124v292H40m720-292H636v292h124M40 257h46v126H40m720-126h-46v126h46M164 267a64 64 0 0 1 0 106m472-106a64 64 0 0 0 0 106"/></g><svg x="184" y="0" width="432" height="540" viewBox="0 0 400 500">
+<g transform="translate(0,36)">
+<path d="M150 96 L178 84 Q200 100 222 84 L250 96 L316 132 L294 196 L266 184 L266 392 Q200 400 134 392 L134 184 L106 196 L84 132 Z" fill="#0E1B33" stroke="#0E1B33" stroke-width="2" stroke-linejoin="round" />
+<g>
+<ellipse cx="162" cy="222" rx="22" ry="13" fill="#FFFFFF" />
+<ellipse cx="232" cy="248" rx="26" ry="15" fill="#D4FF3A" />
+<ellipse cx="176" cy="300" rx="30" ry="17" fill="#D4FF3A" />
+<ellipse cx="240" cy="338" rx="20" ry="13" fill="#FFFFFF" />
+<ellipse cx="156" cy="364" rx="17" ry="11" fill="#FFFFFF" />
+<ellipse cx="208" cy="196" rx="18" ry="10" fill="#D4FF3A" />
+<ellipse cx="214" cy="370" rx="16" ry="10" fill="#D4FF3A" />
+</g>
+<g fill="#FFFFFF" stroke="#0E1B33" stroke-width="1.5">
+<polygon points="84,132 106,196 115,192 93,128" />
+<polygon points="316,132 294,196 285,192 307,128" />
+</g>
+<path d="M178 84 Q200 112 222 84" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+<path d="M178 84 Q200 112 222 84" fill="none" stroke="#0E1B33" stroke-width="1.5" />
+<circle cx="236" cy="150" r="11" fill="none" stroke="#FFFFFF" stroke-width="2.5" />
+<path d="M134 392 Q200 400 266 392" fill="none" stroke="#0E1B33" stroke-width="2" />
+</g>
+</svg></svg>

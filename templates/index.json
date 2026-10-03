@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero_slideshow": {
@@ -108,7 +99,8 @@
         "autoplay": true,
         "autoplay_speed": 6.5,
         "aria_label": "Featured"
-      }
+      },
+      "disabled": true
     },
     "trust_row": {
       "type": "trust-row",
@@ -203,7 +195,8 @@
         "rating_label": "from 2,400+ reviews",
         "rating_aria_suffix": "out of 5",
         "aria_label": "Why clubs choose Nineties90"
-      }
+      },
+      "disabled": true
     },
     "sport_tiles": {
       "type": "sport-tiles",
@@ -294,7 +287,8 @@
         "heading": "Kit for every club",
         "link_label": "Find your club shop",
         "link_url": ""
-      }
+      },
+      "disabled": true
     },
     "how_it_works": {
       "type": "how-it-works",
@@ -356,7 +350,8 @@
         "subtext": "<p>A simple, transparent process to get your club match-ready.</p>",
         "btn_label": "Start your design",
         "btn_url": ""
-      }
+      },
+      "disabled": true
     },
     "bundle_spotlight": {
       "type": "bundle-spotlight",
@@ -417,7 +412,8 @@
         "heading": "One bundle. Whole kit.",
         "page_link": "",
         "link_label": "View Full Package Details"
-      }
+      },
+      "disabled": true
     },
     "featured_products_carousel": {
       "type": "featured-products-carousel",
@@ -439,7 +435,8 @@
         "show_secondary_image": true,
         "show_vendor": true,
         "show_quick_add": true
-      }
+      },
+      "disabled": true
     },
     "featured_collection": {
       "type": "featured-collection",
@@ -467,7 +464,8 @@
         "swipe_on_mobile": false,
         "padding_top": 44,
         "padding_bottom": 36
-      }
+      },
+      "disabled": true
     },
     "community_grid_JTpDkJ": {
       "type": "community-grid",
@@ -546,7 +544,8 @@
         "heading": "Worn on the pitch",
         "description": "Real clubs. Real kit. See how teams are wearing Nineties90.",
         "cards_per_view": 3
-      }
+      },
+      "disabled": true
     },
     "reviews_wall_ErNXPU": {
       "type": "reviews-wall",
@@ -628,7 +627,8 @@
         "heading": "Don't just take our word for it",
         "rating_score": "4.9",
         "total_reviews": "from 1,200+ Verified Athletes"
-      }
+      },
+      "disabled": true
     },
     "final_cta_club": {
       "type": "final-cta-club",
@@ -677,7 +677,8 @@
         "heading": "Join the squad",
         "subheading": "Sign up for exclusive kit drops, early access to sales, and pro athlete training tips delivered straight to your inbox.",
         "button_label": "Join the club"
-      }
+      },
+      "disabled": true
     },
     "faq_accordion": {
       "type": "faq-accordion",
@@ -745,10 +746,364 @@
         "subheading": "Everything you need to know about our custom teamwear process, fabrics, and care instructions.",
         "cta_label": "Have another question? Contact Us",
         "cta_link": ""
+      },
+      "disabled": true
+    },
+    "clean_hero": {
+      "type": "n90-clean-hero-slider",
+      "settings": {
+        "autoplay": true,
+        "interval": 6.5
+      },
+      "blocks": {
+        "0": {
+          "type": "slide",
+          "settings": {}
+        },
+        "1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Ready to buy",
+            "heading": "ORBIT Training Football",
+            "text": "Equipment and essentials for every session. Explore what’s in the store.",
+            "artwork": "equipment",
+            "art_alt": "Nineties90 training equipment illustration",
+            "caption": "Photo: ORBIT ball on the training pitch",
+            "button_label": "Shop ORBIT",
+            "secondary_label": "Shop all equipment"
+          }
+        },
+        "2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Match bundles",
+            "heading": "Pulse & APEX Match Bundles",
+            "text": "A coordinated look for your whole squad, on and off the pitch.",
+            "artwork": "teamwear",
+            "art_alt": "Coordinated navy and white match kits",
+            "button_label": "Shop bundles",
+            "secondary_label": "Get a team quote",
+            "secondary_link": "#TeamQuote",
+            "caption": "Photo: squad in the Pulse bundle, match day"
+          }
+        },
+        "3": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Club shops",
+            "heading": "A free kit shop for your club",
+            "text": "Free setup · Players and parents order direct",
+            "artwork": "clubs",
+            "art_alt": "Nineties90 striped club shirt",
+            "button_label": "Set up a club shop",
+            "button_link": "#TeamQuote",
+            "secondary_label": "Find your club",
+            "caption": "Photo: parents collecting kit at the clubhouse"
+          }
+        }
+      },
+      "block_order": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    "clean_trust": {
+      "type": "n90-clean-trust-strip",
+      "settings": {},
+      "blocks": {
+        "0": {
+          "type": "item",
+          "settings": {
+            "text": "Custom teamwear",
+            "icon": "shirt"
+          }
+        },
+        "1": {
+          "type": "item",
+          "settings": {
+            "text": "Ready-to-buy essentials",
+            "icon": "ball"
+          }
+        },
+        "2": {
+          "type": "item",
+          "settings": {
+            "text": "Club shop support",
+            "icon": "check"
+          }
+        },
+        "3": {
+          "type": "item",
+          "settings": {
+            "text": "Your team. Your identity.",
+            "icon": "shirt"
+          }
+        }
+      },
+      "block_order": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    "clean_process": {
+      "type": "n90-clean-how-it-works",
+      "settings": {},
+      "blocks": {
+        "0": {
+          "type": "step",
+          "settings": {
+            "title": "Tell us your plan",
+            "text": "Choose your sport, team colours and the kit you need."
+          }
+        },
+        "1": {
+          "type": "step",
+          "settings": {
+            "title": "Make it yours",
+            "text": "Work with us on your design, crest and finishing touches."
+          }
+        },
+        "2": {
+          "type": "step",
+          "settings": {
+            "title": "Get match day ready",
+            "text": "Confirm your quote, sizes and delivery details with our team."
+          }
+        }
+      },
+      "block_order": [
+        "0",
+        "1",
+        "2"
+      ]
+    },
+    "clean_sports": {
+      "type": "n90-clean-sport-tiles",
+      "settings": {},
+      "blocks": {
+        "0": {
+          "type": "sport",
+          "settings": {
+            "name": "Football",
+            "icon": "ball"
+          }
+        },
+        "1": {
+          "type": "sport",
+          "settings": {
+            "name": "Rugby",
+            "icon": "ball"
+          }
+        },
+        "2": {
+          "type": "sport",
+          "settings": {
+            "name": "Cricket",
+            "icon": "ball"
+          }
+        },
+        "3": {
+          "type": "sport",
+          "settings": {
+            "name": "Darts",
+            "icon": "shirt"
+          }
+        },
+        "4": {
+          "type": "sport",
+          "settings": {
+            "name": "Bowls",
+            "icon": "shirt"
+          }
+        },
+        "5": {
+          "type": "sport",
+          "settings": {
+            "name": "Golf",
+            "icon": "shirt"
+          }
+        }
+      },
+      "block_order": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "clean_bundle": {
+      "type": "n90-clean-image-text",
+      "settings": {
+        "eyebrow": "Match day ready",
+        "heading": "The whole squad. All together.",
+        "text": "<p>From match kits to the layers you wear on the way home. Find your team’s next look.</p>",
+        "artwork": "nn-teamwear.svg",
+        "button_label": "Shop teamwear"
       }
+    },
+    "clean_featured": {
+      "type": "n90-clean-shop-the-look",
+      "settings": {
+        "collection": "all"
+      }
+    },
+    "clean_accessories": {
+      "type": "n90-clean-accessories-row",
+      "settings": {},
+      "blocks": {
+        "0": {
+          "type": "category",
+          "settings": {
+            "label": "Headbands",
+            "artwork": "headband"
+          }
+        },
+        "1": {
+          "type": "category",
+          "settings": {
+            "label": "Wristbands",
+            "artwork": "wristband"
+          }
+        },
+        "2": {
+          "type": "category",
+          "settings": {
+            "label": "Towels",
+            "artwork": "towel"
+          }
+        },
+        "3": {
+          "type": "category",
+          "settings": {
+            "label": "Gloves",
+            "artwork": "gloves"
+          }
+        },
+        "4": {
+          "type": "category",
+          "settings": {
+            "label": "Kit bags",
+            "artwork": "bag"
+          }
+        },
+        "5": {
+          "type": "category",
+          "settings": {
+            "label": "Footballs",
+            "artwork": "ball"
+          }
+        },
+        "6": {
+          "type": "category",
+          "settings": {
+            "label": "Teamwear",
+            "artwork": "shirt"
+          }
+        }
+      },
+      "block_order": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "clean_reels": {
+      "type": "n90-clean-video-reels",
+      "settings": {}
+    },
+    "clean_story": {
+      "type": "n90-clean-image-text",
+      "settings": {
+        "eyebrow": "Nineties90",
+        "heading": "For the love of the game.",
+        "text": "<p>Early starts. Floodlit sessions. The moment your team steps onto the pitch. Teamwear should feel like it belongs to you.</p>",
+        "artwork": "nn-training.svg",
+        "background": "dark",
+        "reverse": true,
+        "anchor": "OurStory",
+        "button_label": "Find your next kit",
+        "caption": "NINETIES90 / CLUB CULTURE"
+      }
+    },
+    "clean_promo": {
+      "type": "n90-clean-image-text",
+      "settings": {
+        "eyebrow": "Training & outerwear",
+        "heading": "Ready for the next session",
+        "text": "<p>Build your training wardrobe with pieces that work together throughout the season.</p>",
+        "artwork": "nn-training.svg",
+        "background": "soft",
+        "button_label": "Shop the collection",
+        "caption": "NINETIES90 / EVERY SESSION"
+      }
+    },
+    "clean_faq": {
+      "type": "n90-clean-faq",
+      "settings": {},
+      "blocks": {
+        "0": {
+          "type": "question",
+          "settings": {}
+        },
+        "1": {
+          "type": "question",
+          "settings": {
+            "question": "Can players order from a club shop?",
+            "answer": "<p>Contact us about setting up a collection for your club. Once your shop is ready, players and supporters can order directly online.</p>"
+          }
+        },
+        "2": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I find delivery and returns information?",
+            "answer": "<p>Check our store policies for current delivery and return terms. For custom teamwear, we’ll confirm the details in your quote before you order.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "0",
+        "1",
+        "2"
+      ]
+    },
+    "clean_quote": {
+      "type": "n90-clean-quote-banner",
+      "settings": {}
+    },
+    "clean_enquiry": {
+      "type": "n90-clean-kit-builder",
+      "settings": {}
+    },
+    "clean_marquee": {
+      "type": "n90-clean-marquee",
+      "settings": {}
     }
   },
   "order": [
+    "clean_hero",
+    "clean_trust",
+    "clean_sports",
+    "clean_process",
+    "clean_bundle",
+    "clean_featured",
+    "clean_accessories",
+    "clean_marquee",
+    "clean_reels",
+    "clean_story",
+    "clean_promo",
+    "clean_faq",
+    "clean_quote",
+    "clean_enquiry",
     "hero_slideshow",
     "trust_row",
     "sport_tiles",

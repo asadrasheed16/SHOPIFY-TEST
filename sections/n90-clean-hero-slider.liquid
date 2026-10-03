@@ -1,0 +1,192 @@
+<section class="hero-section wrap" aria-roledescription="carousel" aria-label="{{ section.settings.label | escape }}" data-slideshow data-autoplay="{{ section.settings.autoplay }}" data-interval="{{ section.settings.interval | times: 1000 }}">
+ <div class="hero-slides">
+ {% for block in section.blocks %}
+  {% liquid
+   assign button_link = block.settings.button_link
+   if button_link == blank
+    if forloop.first
+     assign button_link = pages['kit-builder'].url
+     if button_link == blank
+      assign button_link = routes.root_url | append: '#TeamQuote'
+     endif
+    else
+     assign button_link = routes.all_products_collection_url
+    endif
+   endif
+  %}
+  <div class="hero-slide{% if forloop.first %} is-active{% endif %}" data-slide {{ block.shopify_attributes }} role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ forloop.length }}">
+   <div class="hero-media">
+   {% if block.settings.image != blank %}{% if forloop.first %}{% assign image_loading = 'eager' %}{% else %}{% assign image_loading = 'lazy' %}{% endif %}<picture>{% if block.settings.mobile_image != blank %}<source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">{% endif %}{{ block.settings.image | image_url: width: 1800 | image_tag: widths: '480,720,960,1200,1600,1800', sizes: '(max-width: 749px) 100vw, 55vw', loading: image_loading, class: 'hero-photo' }}</picture>{% else %}{% render 'n90-clean-hero-art', artwork: block.settings.artwork, alt: block.settings.art_alt %}{% endif %}
+   {% if block.settings.image == blank and block.settings.artwork == 'clubs' and block.settings.club_title != blank %}<div class="hero-club-card"><span class="hero-club-crest">{% if block.settings.club_crest != blank %}{{ block.settings.club_crest | image_url: width: 88 | image_tag: width: 44, height: 44, loading: 'lazy', alt: '' }}{% else %}<span aria-hidden="true">Crest</span>{% endif %}</span><div><p class="small"><strong>{{ block.settings.club_title | escape }}</strong></p>{% if block.settings.club_note != blank %}<p class="hero-club-note">{{ block.settings.club_note | escape }}</p>{% endif %}</div></div>{% endif %}
+   {% if block.settings.caption != blank %}<span class="hero-caption">{% render 'n90-clean-header-camera' %}<span>{{ block.settings.caption | escape }}</span></span>{% endif %}
+   </div>
+   <div class="hero-copy"><p class="eyebrow">{{ block.settings.eyebrow | escape }}</p>{% if forloop.first %}<h1 class="d h1">{{ block.settings.heading | escape }}</h1>{% else %}<h2 class="d h1">{{ block.settings.heading | escape }}</h2>{% endif %}<p class="lead">{{ block.settings.text | escape }}</p><div class="cta"><a class="btn" href="{{ button_link }}">{{ block.settings.button_label | escape }}<svg class="hero-button-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>{% if block.settings.secondary_label != blank %}<a class="tlink" href="{{ block.settings.secondary_link | default: routes.all_products_collection_url }}">{{ block.settings.secondary_label | escape }}</a>{% endif %}</div></div>
+  </div>
+ {% endfor %}
+ {% if section.blocks.size > 1 %}<div class="slider-controls" data-slider-controls><span class="slide-count"><strong data-slide-number>01</strong> / {{ section.blocks.size | prepend: '0' }}</span><div class="slide-dots">{% for block in section.blocks %}<button type="button" data-slide-to="{{ forloop.index0 }}" class="slide-dot{% if forloop.first %} is-active{% endif %}" aria-label="Show slide {{ forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}><span></span></button>{% endfor %}</div><span class="slider-spacer"></span><button class="circle-button" type="button" data-slide-prev aria-label="Previous slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button><button class="circle-button" type="button" data-slide-next aria-label="Next slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>{% if section.settings.autoplay %}<button class="slider-pause-control" type="button" data-slide-pause>Pause slideshow</button>{% endif %}</div>{% endif %}
+ </div>
+</section>
+{% schema %}
+{
+  "name": "Motion hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Accessibility label",
+      "default": "Featured collections"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Automatically rotate slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "interval",
+      "label": "Slide interval",
+      "min": 5,
+      "max": 12,
+      "step": 0.5,
+      "unit": "s",
+      "default": 6.5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Custom teamwear"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Custom teamwear for grassroots clubs"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "From 10 pieces · 3–4 weeks · Free design"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "select",
+          "id": "artwork",
+          "label": "Fallback illustration",
+          "options": [
+            {
+              "value": "kits",
+              "label": "Kit lineup"
+            },
+            {
+              "value": "equipment",
+              "label": "Equipment"
+            },
+            {
+              "value": "training",
+              "label": "Training"
+            },
+            {
+              "value": "teamwear",
+              "label": "Teamwear"
+            },
+            {
+              "value": "clubs",
+              "label": "Club shop"
+            }
+          ],
+          "default": "kits"
+        },
+        {
+          "type": "text",
+          "id": "art_alt",
+          "label": "Illustration description",
+          "default": "Nineties90 navy and white team kit lineup"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Image caption",
+          "default": "Photo: U12s team in home kit, lined up before kick-off"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Get a free kit mockup"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "secondary_label",
+          "label": "Second link label",
+          "default": "Shop ready-to-buy"
+        },
+        {
+          "type": "url",
+          "id": "secondary_link",
+          "label": "Second link"
+        },
+        {
+          "type": "header",
+          "content": "Club shop illustration card"
+        },
+        {
+          "type": "paragraph",
+          "content": "Shown with the Club shop fallback illustration. Clear the title to hide the card."
+        },
+        {
+          "type": "text",
+          "id": "club_title",
+          "label": "Club title",
+          "default": "Your club kit shop"
+        },
+        {
+          "type": "text",
+          "id": "club_note",
+          "label": "Club note",
+          "default": "Players order direct"
+        },
+        {
+          "type": "image_picker",
+          "id": "club_crest",
+          "label": "Club crest"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Motion hero",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ],
+  "class": "n90-clean"
+}
+{% endschema %}

@@ -1,0 +1,54 @@
+<div class="wrap"><div class="trust-strip">{% for block in section.blocks %}<div {{ block.shopify_attributes }}>{% render 'n90-clean-icon', name: block.settings.icon %}<span>{{ block.settings.text | escape }}</span></div>{% endfor %}</div></div>
+
+{% schema %}
+{
+  "name": "Trust strip",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message",
+          "default": "Made for your team"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "shirt",
+              "label": "Shirt"
+            },
+            {
+              "value": "ball",
+              "label": "Ball"
+            }
+          ],
+          "default": "check"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Trust strip",
+      "blocks": [
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ],
+  "class": "n90-clean"
+}
+{% endschema %}

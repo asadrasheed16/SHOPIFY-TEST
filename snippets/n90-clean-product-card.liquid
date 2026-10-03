@@ -1,0 +1,27 @@
+{% comment %}A real catalog product. Empty collections never create purchasable sample products.{% endcomment %}
+{%- if product != blank -%}
+  <article class="product-card">
+    <a class="product-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '240, 360, 540, 720, 900', sizes: '(min-width: 990px) 25vw, 50vw', class: 'product-card__image' }}
+        {% if product.images[1] %}{{ product.images[1] | image_url: width: 900 | image_tag: loading: 'lazy', widths: '240, 360, 540, 720, 900', sizes: '(min-width: 990px) 25vw, 50vw', class: 'product-card__alternate', alt: '' }}{% endif %}
+      {% else %}<span class="product-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}<span class="sr">Product image coming soon</span></span>{% endif %}
+      {% unless product.available %}<span class="product-card__badge">Sold out</span>{% else %}{% if product.compare_at_price > product.price %}<span class="product-card__badge">Sale</span>{% endif %}{% endunless %}
+    </a>
+    {% if show_vendor and product.vendor != blank %}<p class="product-card__vendor eyebrow">{{ product.vendor | escape }}</p>{% endif %}
+    <h3 class="product-card__title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+    <div class="n90-native-price">{% render 'price', product: product %}</div>
+    {% for option in product.options_with_values %}
+      {% assign option_name = option.name | downcase %}
+      {% if option_name == 'color' or option_name == 'colour' %}
+        <div class="product-card__swatches" aria-label="{{ option.values.size }} {{ option.name | escape }} options">
+          {% for value in option.values limit: 6 %}
+            {% if value.swatch.image %}<span class="product-card__swatch" title="{{ value | escape }}">{{ value.swatch.image | image_url: width: 40 | image_tag: loading: 'lazy', alt: value.name }}</span>
+            {% elsif value.swatch.color %}<span class="product-card__swatch" style="background-color: rgb({{ value.swatch.color.rgb }});" title="{{ value | escape }}"></span>{% endif %}
+          {% endfor %}
+          {% if option.values.size > 6 %}<small>+{{ option.values.size | minus: 6 }}</small>{% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </article>
+{%- endif -%}

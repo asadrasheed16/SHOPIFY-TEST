@@ -1,0 +1,98 @@
+{{ 'n90-clean-pages.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'n90-clean-kit-builder.js' | asset_url }}" defer="defer"></script>
+{% assign heading_tag = 'h1' %}{% if request.page_type == 'index' %}{% assign heading_tag = 'h2' %}{% endif %}
+<section class="section nn-page-section"{% if request.page_type == 'index' %} id="TeamQuote"{% endif %}>
+  <div class="wrap">
+    <nn-kit-builder>
+      {% assign form_id = 'KitEnquiry-' | append: section.id %}
+      {% form 'contact', id: form_id, class: 'nn-form' %}
+        {% if form.posted_successfully? %}
+          <div class="nn-success" role="status">
+            <span class="nn-success-mark" aria-hidden="true">✓</span>
+            <{{ heading_tag }} class="d h2">Your request is in</{{ heading_tag }}>
+            <p>Thank you. Our team has received your kit enquiry and will contact you by email to discuss your design and quote.</p>
+            <a href="{{ routes.all_products_collection_url }}" class="btn">Continue shopping</a>
+          </div>
+        {% else %}
+          <header class="nn-builder-header"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><{{ heading_tag }} class="d {% if request.page_type == 'index' %}h2{% else %}h1{% endif %}">{{ section.settings.heading | escape }}</{{ heading_tag }}><p class="muted">{{ section.settings.intro | escape }}</p></header>
+          {% if form.errors %}<div data-kit-error class="nn-form-status nn-form-status--error" role="alert">{{ form.errors | default_errors }}</div>{% endif %}
+          <input type="hidden" name="contact[Enquiry type]" value="Custom kit design and quote">
+          <div class="nn-content-grid">
+            <div>
+              <ol class="nn-builder-steps" aria-label="Your kit request progress" data-kit-progress hidden>
+                <li data-progress-step><span class="nn-step-number">1</span>Sport &amp; kit</li><li data-progress-step><span class="nn-step-number">2</span>Your team</li><li data-progress-step><span class="nn-step-number">3</span>Your design</li><li data-progress-step><span class="nn-step-number">4</span>Contact details</li>
+              </ol>
+              <p class="sr" role="status" aria-live="polite" data-kit-status></p>
+              <fieldset class="nn-kit-step" data-kit-step>
+                <legend>1. Sport &amp; kit</legend>
+                <fieldset><legend>Which sport? <span aria-hidden="true">*</span></legend><div class="nn-choice-grid">
+                  {% assign sports = 'Football,Rugby,Cricket,Netball,Basketball,Other' | split: ',' %}
+                  {% for sport in sports %}<label class="nn-choice"><input type="radio" name="contact[Sport]" value="{{ sport | escape }}" required><span>{{ sport }}</span></label>{% endfor %}
+                </div></fieldset>
+                <div class="nn-field"><label for="KitItems-{{ section.id }}">What do you need? <span aria-hidden="true">*</span></label><select id="KitItems-{{ section.id }}" name="contact[Kit required]" required><option value="">Choose your kit</option><option>Full match kit</option><option>Match shirts</option><option>Training kit</option><option>Tracksuits and leisurewear</option><option>Club bundle</option><option>Something else</option></select></div>
+                <fieldset><legend>Anything to add?</legend><div class="nn-choice-grid"><label class="nn-choice"><input type="checkbox" name="contact[Add shorts]" value="Yes"><span>Shorts</span></label><label class="nn-choice"><input type="checkbox" name="contact[Add socks]" value="Yes"><span>Socks</span></label><label class="nn-choice"><input type="checkbox" name="contact[Add bags]" value="Yes"><span>Bags</span></label><label class="nn-choice"><input type="checkbox" name="contact[Add jackets]" value="Yes"><span>Jackets</span></label><label class="nn-choice"><input type="checkbox" name="contact[Add club shop]" value="Yes"><span>Club shop</span></label><label class="nn-choice"><input type="checkbox" name="contact[Add personalisation]" value="Yes"><span>Names &amp; numbers</span></label></div></fieldset>
+              </fieldset>
+              <fieldset class="nn-kit-step" data-kit-step>
+                <legend>2. Your team</legend>
+                <div class="nn-fields"><div class="nn-field"><label for="KitPlayers-{{ section.id }}">How many players? <span aria-hidden="true">*</span></label><input id="KitPlayers-{{ section.id }}" type="number" name="contact[Number of players]" min="1" max="100000" step="1" inputmode="numeric" required></div><div class="nn-field"><label for="KitAges-{{ section.id }}">Age group <span aria-hidden="true">*</span></label><select id="KitAges-{{ section.id }}" name="contact[Age group]" required><option value="">Choose an age group</option><option>Junior</option><option>Adult</option><option>Junior and adult</option></select></div></div>
+                <div class="nn-field" style="margin-top:24px"><label for="KitDeadline-{{ section.id }}">Preferred delivery date (optional)</label><input id="KitDeadline-{{ section.id }}" type="date" name="contact[Preferred delivery date]"><small>We will confirm availability and delivery timing with your quote.</small></div>
+              </fieldset>
+              <fieldset class="nn-kit-step" data-kit-step>
+                <legend>3. Your design</legend>
+                <div class="nn-fields"><div class="nn-field"><label for="KitMainColour-{{ section.id }}">Main colour <span aria-hidden="true">*</span></label><input id="KitMainColour-{{ section.id }}" name="contact[Main colour]" placeholder="e.g. Navy blue" maxlength="100" required></div><div class="nn-field"><label for="KitSecondColour-{{ section.id }}">Second colour (optional)</label><input id="KitSecondColour-{{ section.id }}" name="contact[Second colour]" placeholder="e.g. White" maxlength="100"></div></div>
+                <div class="nn-field" style="margin-top:24px"><label for="KitCrest-{{ section.id }}">Link to your crest (optional)</label><input id="KitCrest-{{ section.id }}" type="url" name="contact[Crest link]" placeholder="https://" aria-describedby="KitCrestHelp-{{ section.id }}"><small id="KitCrestHelp-{{ section.id }}">Paste a shareable link to your crest, such as a Google Drive or Dropbox link. You can also send it when we reply.</small></div>
+                <div class="nn-field"><label for="KitNotes-{{ section.id }}">Design notes (optional)</label><textarea id="KitNotes-{{ section.id }}" name="contact[body]" rows="5" placeholder="Sponsors, names, numbers, inspiration or anything else we should know…">{{ form.body | escape }}</textarea></div>
+              </fieldset>
+              <fieldset class="nn-kit-step" data-kit-step>
+                <legend>4. Contact details</legend>
+                <div class="nn-fields"><div class="nn-field"><label for="KitName-{{ section.id }}">Your name <span aria-hidden="true">*</span></label><input id="KitName-{{ section.id }}" name="contact[name]" autocomplete="name" value="{{ form.name | default: customer.name | escape }}" required></div><div class="nn-field"><label for="KitClub-{{ section.id }}">Club or team name <span aria-hidden="true">*</span></label><input id="KitClub-{{ section.id }}" name="contact[Club name]" autocomplete="organization" required></div><div class="nn-field"><label for="KitEmail-{{ section.id }}">Email <span aria-hidden="true">*</span></label><input id="KitEmail-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" autocapitalize="off" value="{{ form.email | default: customer.email | escape }}" required></div><div class="nn-field"><label for="KitPhone-{{ section.id }}">Phone (optional)</label><input id="KitPhone-{{ section.id }}" type="tel" name="contact[phone]" autocomplete="tel" value="{{ form.phone | escape }}"></div></div>
+                <label class="nn-check"><input type="checkbox" name="contact[WhatsApp updates consent]" value="Yes"><span>You may contact me on WhatsApp about this kit enquiry.</span></label>
+                <p class="nn-help">Your request goes to our team for a personal reply. Submitting it does not place an order.{% if shop.privacy_policy != blank %} Read our <a href="{{ shop.privacy_policy.url }}">privacy policy</a>.{% endif %}</p>
+              </fieldset>
+              <div class="nn-form-actions"><button class="btn-line nn-back" type="button" data-kit-back hidden>Back</button><button class="btn" type="button" data-kit-next hidden>Continue <span aria-hidden="true">→</span></button><button class="btn" type="submit" data-kit-submit>Send my kit request</button></div>
+            </div>
+            <aside class="nn-kit-summary" aria-label="Kit request summary"><p class="eyebrow">Your request</p><h2 class="d h3">Made for your team</h2><dl><div><dt>Sport</dt><dd data-kit-summary="sport">Not selected</dd></div><div><dt>Items</dt><dd data-kit-summary="items">Not selected</dd></div><div><dt>Players</dt><dd data-kit-summary="players">Not selected</dd></div><div><dt>Ages</dt><dd data-kit-summary="ages">Not selected</dd></div><div><dt>Colours</dt><dd data-kit-summary="colours">Not selected</dd></div><div><dt>Crest</dt><dd data-kit-summary="crest">To follow</dd></div></dl><div class="nn-help rte">{{ section.settings.summary_text }}</div></aside>
+          </div>
+        {% endif %}
+      {% endform %}
+    </nn-kit-builder>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Kit enquiry builder",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Your colours. Your club. Your kit."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Let's build your kit"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Introduction",
+      "default": "Four quick steps. Tell us what your team needs and we will be in touch with a design and quote."
+    },
+    {
+      "type": "richtext",
+      "id": "summary_text",
+      "label": "Summary text",
+      "default": "<p>Your crest, your colours and the details that make your team yours. Our team will confirm your design, pricing and delivery before you order.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kit enquiry builder"
+    }
+  ],
+  "limit": 1,
+  "class": "n90-clean"
+}
+{% endschema %}

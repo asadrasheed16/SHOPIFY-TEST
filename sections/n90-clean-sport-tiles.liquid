@@ -1,0 +1,77 @@
+<section class="section"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">{{ section.settings.eyebrow | escape }}</span><h2 class="d h2">{{ section.settings.heading | escape }}</h2></div><a class="tlink" href="{{ routes.all_products_collection_url }}">Shop all {% render 'n90-clean-icon', name: 'arrow' %}</a></div><div class="sports-grid">{% for block in section.blocks %}{% assign sport_collection = block.settings.collection %}<a class="sport-tile" href="{% if sport_collection != blank %}{{ sport_collection.url }}{% else %}{{ routes.search_url }}?type=product&q={{ block.settings.name | url_encode }}{% endif %}" {{ block.shopify_attributes }}>{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 640 | image_tag: loading: 'lazy', widths: '240,400,640', sizes: '(max-width:749px) 45vw, 16vw' }}{% else %}<div class="sport-graphic sport-{{ forloop.index }}"><span>0{{ forloop.index }}</span>{% render 'n90-clean-icon', name: block.settings.icon %}<div class="sport-lines"></div></div>{% endif %}<div class="sport-title"><h3 class="d">{{ block.settings.name | escape }}</h3>{% render 'n90-clean-icon', name: 'arrow' %}</div></a>{% endfor %}</div></div></section>
+
+{% schema %}
+{
+  "name": "Shop by sport",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Find your game"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built for every team"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sport",
+      "name": "Sport",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Sport name",
+          "default": "Football"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Fallback icon",
+          "options": [
+            {
+              "value": "ball",
+              "label": "Ball"
+            },
+            {
+              "value": "shirt",
+              "label": "Kit"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            }
+          ],
+          "default": "ball"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Shop by sport",
+      "blocks": [
+        {
+          "type": "sport"
+        }
+      ]
+    }
+  ],
+  "class": "n90-clean"
+}
+{% endschema %}

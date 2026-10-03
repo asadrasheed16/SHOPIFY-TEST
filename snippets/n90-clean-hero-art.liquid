@@ -1,0 +1,10 @@
+<svg class="hero-pitch" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="40" y="40" width="720" height="520"/><path d="M400 40v520"/><circle cx="400" cy="300" r="80"/><circle cx="400" cy="300" r="4" fill="currentColor"/><rect x="40" y="160" width="120" height="280"/><rect x="640" y="160" width="120" height="280"/><rect x="40" y="240" width="44" height="120"/><rect x="716" y="240" width="44" height="120"/><path d="M160 250a60 60 0 0 1 0 100M640 250a60 60 0 0 0 0 100"/></svg>
+<div class="hero-kit-stage {% case artwork %}{% when 'equipment' %}solo{% when 'teamwear' %}duo{% when 'clubs' %}solo club{% when 'training' %}solo{% else %}lineup{% endcase %}" role="img" aria-label="{{ alt | escape }}">
+{% case artwork %}
+{% when 'equipment' %}<div class="hero-kit"><img src="{{ 'nn-football-hero.svg' | asset_url }}" width="400" height="500" alt="" /></div>
+{% when 'teamwear' %}<div class="hero-kit"><img src="{{ 'nn-kit-pulse-hero.svg' | asset_url }}" width="400" height="500" alt="" /></div><div class="hero-kit"><img src="{{ 'nn-kit-apex-hero.svg' | asset_url }}" width="400" height="500" alt="" /></div>
+{% when 'clubs' %}<div class="hero-kit"><img src="{{ 'nn-club-shirt-hero.svg' | asset_url }}" width="400" height="500" alt="" /></div>
+{% when 'training' %}<div class="hero-kit"><img src="{{ 'nn-training.svg' | asset_url }}" width="800" height="640" alt="" /></div>
+{% else %}<div class="hero-kit"><img src="{{ 'nn-kit-hoops-hero.svg' | asset_url }}" width="400" height="500" alt="" /></div><div class="hero-kit"><img src="{{ 'nn-kit-pulse-hero.svg' | asset_url }}" width="400" height="500" alt="" /></div><div class="hero-kit"><img src="{{ 'nn-kit-apex-hero.svg' | asset_url }}" width="400" height="500" alt="" /></div>
+{% endcase %}
+</div>

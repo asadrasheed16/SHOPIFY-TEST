@@ -1,0 +1,103 @@
+<section class="section"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">{{ section.settings.eyebrow | escape }}</span><h2 class="d h2">{{ section.settings.heading | escape }}</h2></div><a class="tlink" href="{{ section.settings.link | default: routes.all_products_collection_url }}">Browse the store {% render 'n90-clean-icon', name: 'arrow' %}</a></div><div class="accessories-row">{% for block in section.blocks %}<a class="accessory-category" href="{% if block.settings.link != blank %}{{ block.settings.link }}{% else %}{{ routes.search_url }}?type=product&q={{ block.settings.label | url_encode }}{% endif %}" {{ block.shopify_attributes }}><div class="accessory-circle">{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 260 | image_tag: loading: 'lazy' }}{% else %}{% case block.settings.artwork %}{% when 'headband' %}<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 25Q32 9 56 25v16Q32 25 8 41V25Z"/><path d="M28 27v8m5-8v8"/></svg>{% when 'bag' %}<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="23" width="46" height="29" rx="5"/><path d="M23 23v-7a9 9 0 0 1 18 0v7M18 24v28m28-28v28M26 39h12"/></svg>{% when 'towel' %}<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8h30v47H16V8Zm-5 5h5M11 18h5M11 24h5M11 30h5M11 36h5M11 42h5M11 48h5M11 54h5M22 42h18m-18 5h18"/></svg>{% when 'gloves' %}<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 54V37L9 24q-3-6 3-7l9 10V11q0-7 6-5v19V8q6-7 7 0v17V10q6-5 7 2v16V16q6-5 7 2v23l-6 13H19Z"/></svg>{% when 'wristband' %}<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 19q18-8 36 0v26q-18 8-36 0V19Zm0 6q18 8 36 0M26 32v8m5-8v8"/></svg>{% when 'ball' %}{% render 'n90-clean-icon', name: 'ball' %}{% else %}{% render 'n90-clean-icon', name: 'shirt' %}{% endcase %}{% endif %}</div><h3 class="d">{{ block.settings.label | escape }}</h3><span class="small muted">{{ block.settings.caption | escape }}</span></a>{% endfor %}</div></div></section>
+
+{% schema %}
+{
+  "name": "Accessories categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The finishing touches"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Small details. Big game."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "View all link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Headbands"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "artwork",
+          "label": "Illustration",
+          "default": "headband",
+          "options": [
+            {
+              "value": "headband",
+              "label": "Headband"
+            },
+            {
+              "value": "wristband",
+              "label": "Wristband"
+            },
+            {
+              "value": "towel",
+              "label": "Towel"
+            },
+            {
+              "value": "gloves",
+              "label": "Gloves"
+            },
+            {
+              "value": "bag",
+              "label": "Bag"
+            },
+            {
+              "value": "ball",
+              "label": "Ball"
+            },
+            {
+              "value": "shirt",
+              "label": "Shirt"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Accessories categories",
+      "blocks": [
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ],
+  "class": "n90-clean"
+}
+{% endschema %}

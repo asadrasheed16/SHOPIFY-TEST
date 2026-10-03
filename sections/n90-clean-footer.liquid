@@ -1,0 +1,61 @@
+<footer class="footer"><div class="wrap">
+  <div class="footer-top"><div class="footer-brand"><a class="logo" href="{{ routes.root_url }}">{{ section.settings.brand_name | escape }}</a><p>{{ section.settings.description | escape }}</p></div>
+    {% for block in section.blocks %}<div {{ block.shopify_attributes }}><h2 class="footer-title">{{ block.settings.heading | escape }}</h2><ul>{% for link in block.settings.menu.links %}<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{% else %}<li><a href="{{ routes.all_products_collection_url }}">Shop all</a></li><li><a href="{{ routes.collections_url }}">Collections</a></li>{% endfor %}</ul></div>{% endfor %}
+    <div class="footer-newsletter"><h2 class="footer-title">{{ section.settings.newsletter_heading | escape }}</h2><p>{{ section.settings.newsletter_text | escape }}</p>{% assign newsletter_id = 'Newsletter-' | append: section.id %}{% form 'customer', id: newsletter_id %}<input type="hidden" name="contact[tags]" value="newsletter"><label class="sr" for="Email-{{ section.id }}">Email address</label><div class="inline-form"><input type="email" id="Email-{{ section.id }}" name="contact[email]" autocomplete="email" required placeholder="Your email address"><button type="submit" class="icon-button" aria-label="Subscribe">{% render 'n90-clean-icon', name: 'arrow' %}</button></div>{% if form.posted_successfully? %}<p role="status">Thanks for signing up.</p>{% endif %}{{ form.errors | default_errors }}{% endform %}</div>
+  </div>
+  <div class="footer-bottom"><p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}</p><div class="policy-links">{% for policy in shop.policies %}{% if policy != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}</div><div class="payment-icons">{% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag: class: 'payment-icon' }}{% endfor %}</div></div>
+  {% if localization.available_countries.size > 1 or localization.available_languages.size > 1 %}{% form 'localization', class: 'localization-form' %}{% if localization.available_countries.size > 1 %}<label>Country <select name="country_code">{% for country in localization.available_countries %}<option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }} ({{ country.currency.iso_code }})</option>{% endfor %}</select></label>{% endif %}{% if localization.available_languages.size > 1 %}<label>Language <select name="locale_code">{% for language in localization.available_languages %}<option value="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} selected{% endif %}>{{ language.endonym_name }}</option>{% endfor %}</select></label>{% endif %}<button type="submit" class="btn-line">Update</button>{% endform %}{% endif %}
+</div></footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "NINETIES90"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Teamwear with identity. From the first training session to the final whistle."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Stay in the game"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Newsletter description",
+      "default": "New collections and news from Nineties90."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Explore"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "class": "n90-clean"
+}
+{% endschema %}

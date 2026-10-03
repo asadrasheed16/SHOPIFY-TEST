@@ -1,0 +1,14 @@
+{% if request.page_type == 'product' %}
+  <nav class="n90-page-breadcrumb page-width" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a><span aria-hidden="true">/</span>
+    <a href="{{ routes.all_products_collection_url }}">Shop</a><span aria-hidden="true">/</span>
+    <span aria-current="page">{{ product.title | escape }}</span>
+  </nav>
+{% endif %}
+{% if request.page_type == 'collection' %}
+  <nav class="n90-page-breadcrumb page-width" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a><span aria-hidden="true">/</span>
+    <span aria-current="page">{{ collection.title | escape }}</span>
+  </nav>
+  <p class="n90-catalog-eyebrow page-width">Made for the game</p>
+{% endif %}
